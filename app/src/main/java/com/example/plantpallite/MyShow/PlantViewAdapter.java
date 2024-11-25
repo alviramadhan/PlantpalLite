@@ -42,7 +42,7 @@ public class PlantViewAdapter extends RecyclerView.Adapter<PlantViewHolder> {
         holder.plantTypeText.setText(plant.getType());
         holder.nextWateringDateText.setText("Next Watering Date: " + plant.getWateringFrequency());
         holder.nextFertilizingDateText.setText("Next Fertilizing Date: " + plant.getFertilizingFrequency());
-        holder.plantImage.setImageResource(R.drawable.plant_placeholder_background); // Placeholder image
+        holder.plantImage.setImageResource(R.drawable.plant_placeholder); // Placeholder image
 
 
         // Handle "Edit Plant" button click

@@ -14,6 +14,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.plantpallite.R;
 import com.example.plantpallite.databinding.MyLoginFragmentBinding;
@@ -87,6 +88,11 @@ NavController navController = Navigation.findNavController(view);
                 // Show error message if login failed
                 Snackbar.make(view, "Invalid email or password.", Snackbar.LENGTH_LONG).show();
         }
+
+                    // Dynamically set the image resource
+                    ImageView logo = view.findViewById(R.id.imageView); // Ensure  ImageView ID matches
+                    logo.setImageResource(R.drawable.logo_color);   // Ensure the drawable name is correct
+
                 });
                 });
 

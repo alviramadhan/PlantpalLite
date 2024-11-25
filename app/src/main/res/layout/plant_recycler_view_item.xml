@@ -31,7 +31,7 @@
                 android:layout_marginStart="4dp"
                 android:contentDescription="Plant Image"
                 android:scaleType="centerCrop"
-                android:src="@drawable/plant_placeholder_background"
+                android:src="@drawable/plant_placeholder"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
