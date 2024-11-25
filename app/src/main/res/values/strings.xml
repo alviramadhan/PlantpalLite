@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">PlantpalLite</string>
+
+    //below is for dropdown frequency
+    <string-array name="watering_frequency">
+        <item>Daily</item>
+        <item>Every 2 Days</item>
+        <item>Weekly</item>
+        <item>Biweekly</item>
+        <item>Monthly</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/myLoginFragment">
+
+    <fragment
+        android:id="@+id/myLoginFragment"
+        android:name="com.example.plantpallite.MyLogin.MyLoginFragment"
+        android:label="my_login_fragment"
+        tools:layout="@layout/my_login_fragment" >
+        <action
+            android:id="@+id/action_myLoginFragment_to_myShowAllPlantFragment"
+            app:destination="@id/myShowAllPlantFragment"
+            app:popUpTo="@id/myLoginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/myShowAllPlantFragment"
+        android:name="com.example.plantpallite.MyShow.MyShowAllPlantFragment"
+        android:label="my_show_all_plant_fragment"
+        tools:layout="@layout/my_show_all_plant_fragment" >
+        <action
+            android:id="@+id/action_myShowAllPlantFragment_to_myAddPlantFragment"
+            app:destination="@id/myAddPlantFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myAddPlantFragment"
+        android:name="com.example.plantpallite.MyAdd.MyAddPlantFragment"
+        android:label="my_add_plant_fragment"
+        tools:layout="@layout/my_add_plant_fragment" />
+</navigation>
