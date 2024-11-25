@@ -40,8 +40,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.529"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/guideline3">
+        app:layout_constraintStart_toStartOf="@+id/guideline">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
