@@ -20,7 +20,7 @@
         app:strokeWidth="1dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="12dp">
 
@@ -67,8 +67,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="Edit Plant"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.984"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView10"
-                tools:layout_editor_absoluteX="252dp" />
+                app:layout_constraintVertical_bias="1.0" />
 
             <TextView
                 android:id="@+id/textView8"
