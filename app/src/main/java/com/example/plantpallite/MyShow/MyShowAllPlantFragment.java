@@ -70,12 +70,6 @@ public class MyShowAllPlantFragment extends Fragment {
             navController.navigate(R.id.action_myShowAllPlantFragment_to_myAddPlantFragment);
         });
 
-        //Card item
-
-
-
-        );
-
 
 
 

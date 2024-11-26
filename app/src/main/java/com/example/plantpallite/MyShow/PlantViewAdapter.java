@@ -18,14 +18,11 @@ public class PlantViewAdapter extends RecyclerView.Adapter<PlantViewHolder> {
 
 
     private List<Plant> plants;
-    private OnPlantClickListener listener;
-    private  OnPlantEditListener listenerEdit;
+    private OnPlantEditListener listener;
 
-    // Constructor
-    public PlantViewAdapter(List<Plant> plants, OnPlantClickListener listener, OnPlantEditListener listenerEdit) {
+    public PlantViewAdapter(List<Plant> plants, OnPlantEditListener listener) {
         this.plants = plants;
         this.listener = listener;
-        this.listenerEdit = listenerEdit;
     }
 
     @NonNull
@@ -47,17 +44,12 @@ public class PlantViewAdapter extends RecyclerView.Adapter<PlantViewHolder> {
         holder.nextFertilizingDateText.setText("Next Fertilizing Date: " + plant.getFertilizingFrequency());
         holder.plantImage.setImageResource(R.drawable.plant_placeholder); // Placeholder image
 
-        // Set click listener for the card
-        holder.plantCard.setOnClickListener(v -> {
-            if (listener != null) {
-                listener.onPlantClick(plant);
-            }
-        });
+
 
         // Handle "Edit Plant" button click
         holder.editPlantButton.setOnClickListener(v -> {
-            if (listenerEdit != null) {
-                listenerEdit.onPlantEdit(plant);
+            if (listener != null) {
+                listener.onEdit(plant);
             }
         });
     }
@@ -67,18 +59,7 @@ public class PlantViewAdapter extends RecyclerView.Adapter<PlantViewHolder> {
         return plants != null ? plants.size() : 0;
     }
 
-    // Update the list of plants
-    public void updateData(List<Plant> newPlants) {
-        this.plants = newPlants;
-        notifyDataSetChanged();
-    }
-
-    // Interface for click listener
-    public interface OnPlantClickListener {
-        void onPlantClick(Plant plant);
-    }
-
     public interface OnPlantEditListener {
-        void onPlantEdit(Plant plant);
+        void onEdit(Plant plant);
     }
 }
