@@ -88,11 +88,6 @@ NavController navController = Navigation.findNavController(view);
                 // Show error message if login failed
                 Snackbar.make(view, "Invalid email or password.", Snackbar.LENGTH_LONG).show();
         }
-
-                    // Dynamically set the image resource
-                    ImageView logo = view.findViewById(R.id.imageView); // Ensure  ImageView ID matches
-                    logo.setImageResource(R.drawable.logo_color);   // Ensure the drawable name is correct
-
                 });
                 });
 
