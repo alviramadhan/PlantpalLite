@@ -5,6 +5,8 @@
     android:id="@+id/constraintLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:backgroundTint="@color/backgroundIvoryWhite"
     app:layoutDescription="@xml/my_show_all_plant_fragment_scene"
     app:layout_constraintHorizontal_bias="0.5"
     tools:context=".MyAdd.MyAddPlantFragment">
@@ -69,13 +71,17 @@
         android:layout_width="169dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:backgroundTint="@color/backgroundIvoryWhite"
         android:text="Cancel"
+        android:textColor="@color/buttonPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/myAddPlantSaveBtn"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myAddPlantFertilizerFrequencySpin"
-        app:layout_constraintVertical_bias="0.55" />
+        app:layout_constraintVertical_bias="0.55"
+        app:strokeColor="@color/buttonPrimary"
+        app:strokeWidth="2dp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/myAddPlantNameTIL"
@@ -127,9 +133,10 @@
         android:id="@+id/myAddPlantSaveBtn"
         android:layout_width="169dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="3dp"
+        android:backgroundTint="@color/buttonPrimary"
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="@+id/myAddPlantCancelBtn"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toEndOf="@+id/myAddPlantCancelBtn"
         app:layout_constraintTop_toTopOf="@+id/myAddPlantCancelBtn"

@@ -4,6 +4,7 @@
     android:id="@+id/constraintLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundIvoryWhite"
     tools:context=".MyShow.MyShowAllPlantFragment">
 
     <!-- Guideline 5 (Start margin) -->
@@ -28,13 +29,16 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_margin="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="883dp"
         android:background="@color/white"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
-        app:layout_constraintVertical_chainStyle="packed"
-        tools:layout_editor_absoluteY="8dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <!-- RecyclerView for Plant Cards -->
 
@@ -45,7 +49,7 @@
         android:layout_width="0dp"
         android:layout_height="348dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
@@ -58,9 +62,11 @@
         android:id="@+id/myShowAllPlantAddButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/buttonPrimary"
         android:clickable="true"
-        android:contentDescription="Add Plant"
+        android:contentDescription="@string/app_name"
         android:src="@android:drawable/ic_input_add"
+        app:backgroundTint="@color/buttonPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.86"
@@ -72,16 +78,31 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="35dp"
         android:layout_marginBottom="32dp"
-        android:background="#8BC34A"
+        android:background="@color/buttonSecondary"
         android:fontFamily="@font/inter_semibold"
-        android:text="Hi, Welcome to PlantPal"
+        android:padding="4dp"
+        android:text="Welcome to PlantPal"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/textNormal"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toTopOf="@+id/upcomingTasksContainer"
-        app:layout_constraintVertical_bias="0.04000002" />
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/account_box_24"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintHorizontal_bias="0.955"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,4 +10,6 @@
         <item>Monthly</item>
     </string-array>
 
+    <string name="add_plant">AddPlant</string>
+
 </resources>
