@@ -24,10 +24,18 @@
         <action
             android:id="@+id/action_myShowAllPlantFragment_to_myAddPlantFragment"
             app:destination="@id/myAddPlantFragment" />
+        <action
+            android:id="@+id/action_myShowAllPlantFragment_to_myPlantInfoFragment"
+            app:destination="@id/myPlantInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/myAddPlantFragment"
         android:name="com.example.plantpallite.MyAdd.MyAddPlantFragment"
         android:label="my_add_plant_fragment"
         tools:layout="@layout/my_add_plant_fragment" />
+    <fragment
+        android:id="@+id/myPlantInfoFragment"
+        android:name="com.example.plantpallite.MyShow.MyPlantInfoFragment"
+        android:label="my_plant_info_fragment"
+        tools:layout="@layout/my_plant_info_fragment" />
 </navigation>
