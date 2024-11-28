@@ -157,15 +157,18 @@ public class MyPlantpalRepository {
      * Get details of a specific plant by its ID.
      * This operation is executed asynchronously using a Future.
      */
-    public Plant getPlantById(int plantId) {
-        Callable<Plant> callable = () -> plantDAO.getPlantById(plantId);
-        Future<Plant> future = MyRoomDatabase.databaseWriteExecutor.submit(callable);
+    public LiveData<Plant> getPlantById(int plantId) {
         try {
-            return future.get();
-        } catch (ExecutionException | InterruptedException e) {
-            throw new RuntimeException("Error retrieving plant by ID", e);
+            LiveData<Plant> plant = plantDAO.getPlantById(plantId);
+            if (plant == null) {
+                throw new RuntimeException("No plant found with ID: " + plantId);
+            }
+            return plant;
+        } catch (Exception e) {
+            throw new RuntimeException("Error retrieving plant by ID: " + plantId, e);
         }
     }
+
 
     /**
      * Get a list of plants with upcoming tasks (e.g., watering or fertilizing).

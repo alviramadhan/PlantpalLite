@@ -66,6 +66,7 @@ public class MyShowAllPlantFragment extends Fragment {
         recyclerView.setAdapter(plantViewAdapter);
 
         // Observe LiveData from ViewModel
+        //I just use the admin ID for prototype
         mViewModel.getPlantsByUserId(1).observe(getViewLifecycleOwner(), plants -> {
             if (plants != null) {
                 plantViewAdapter.updateData(plants);
