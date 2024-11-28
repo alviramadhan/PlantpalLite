@@ -18,14 +18,14 @@ public class PlantViewAdapter extends RecyclerView.Adapter<PlantViewHolder> {
 
 
     private List<Plant> plants;
-    private OnPlantClickListener listener;
-    private  OnPlantEditListener listenerEdit;
+    private final OnPlantClickListener clickListener;
+    private final OnPlantEditListener editListener;
 
     // Constructor
-    public PlantViewAdapter(List<Plant> plants, OnPlantClickListener listener, OnPlantEditListener listenerEdit) {
+    public PlantViewAdapter(List<Plant> plants, OnPlantClickListener clickListener, OnPlantEditListener editListener) {
         this.plants = plants;
-        this.listener = listener;
-        this.listenerEdit = listenerEdit;
+        this.clickListener = clickListener;
+        this.editListener = editListener;
     }
 
     @NonNull
@@ -43,25 +43,23 @@ public class PlantViewAdapter extends RecyclerView.Adapter<PlantViewHolder> {
         // Bind plant data to views
         holder.plantNameText.setText(plant.getName());
         holder.plantTypeText.setText(plant.getType());
-        holder.nextWateringDateText.setText("Next Watering Date: " + plant.getWateringFrequency());
-        holder.nextFertilizingDateText.setText("Next Fertilizing Date: " + plant.getFertilizingFrequency());
+        holder.nextWateringDateText.setText("Next Watering: " + plant.getWateringFrequency());
+        holder.nextFertilizingDateText.setText("Next Fertilizing: " + plant.getFertilizingFrequency());
         holder.plantImage.setImageResource(R.drawable.plant_placeholder); // Placeholder image
 
-        // Set click listener for the card
+        // Handle clicks
         holder.plantCard.setOnClickListener(v -> {
-            if (listener != null) {
-                listener.onPlantClick(plant);
+            if (clickListener != null) {
+                clickListener.onPlantClick(plant);
             }
         });
 
-        // Handle "Edit Plant" button click
         holder.editPlantButton.setOnClickListener(v -> {
-            if (listenerEdit != null) {
-                listenerEdit.onPlantEdit(plant);
+            if (editListener != null) {
+                editListener.onPlantEdit(plant);
             }
         });
     }
-
     @Override
     public int getItemCount() {
         return plants != null ? plants.size() : 0;

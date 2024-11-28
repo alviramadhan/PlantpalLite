@@ -50,18 +50,26 @@ public class MyShowAllPlantFragment extends Fragment {
         // Setup RecyclerView
         RecyclerView recyclerView = binding.plantCardsRecyclerView; // Replace with actual RecyclerView ID
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        plantViewAdapter = new PlantViewAdapter(null, plant -> {
-            // Navigate to EditPlantFragment with selected plant
-            // Placeholder for edit action
-        });
+        // Initialize the adapter
+        plantViewAdapter = new PlantViewAdapter(
+                null,
+                plant -> {
+                    // Navigate to Plant Info screen
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("plantId", plant.getId());
+                    Navigation.findNavController(view).navigate(R.id.action_myShowAllPlantFragment_to_myPlantInfoFragment, bundle);
+                },
+                plant -> {
+                    // Edit plant logic (optional)
+                }
+        );
         recyclerView.setAdapter(plantViewAdapter);
 
         // Observe LiveData from ViewModel
         mViewModel.getPlantsByUserId(1).observe(getViewLifecycleOwner(), plants -> {
-            plantViewAdapter = new PlantViewAdapter(plants, plant -> {
-                // Navigate to EditPlantFragment or handle plant edit
-            });
-            recyclerView.setAdapter(plantViewAdapter);
+            if (plants != null) {
+                plantViewAdapter.updateData(plants);
+            }
         });
 
         // Add button functionality
@@ -69,13 +77,6 @@ public class MyShowAllPlantFragment extends Fragment {
             NavController navController = Navigation.findNavController(v);
             navController.navigate(R.id.action_myShowAllPlantFragment_to_myAddPlantFragment);
         });
-
-        //Card item
-
-
-
-        );
-
 
 
 
