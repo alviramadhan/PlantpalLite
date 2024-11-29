@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -60,6 +62,18 @@ public class MyPlantInfoFragment extends Fragment {
 
         // Observe plant details and bind to UI
         mViewModel.getPlantById(plantId).observe(getViewLifecycleOwner(), this::bindPlantData);
+
+        //Schedule tab
+
+
+        binding.scheduleTabButton.setOnClickListener(v -> {
+            NavController navController = Navigation.findNavController(v);
+            args.putInt("plantId", plantId); // Pass the plantId
+            navController.navigate(R.id.action_myPlantInfoFragment_to_myPlantScheduleFragment, args);
+        });
+
+
+
 
         // Back button functionality
       //  binding.backButton.setOnClickListener(v -> Navigation.findNavController(v).navigateUp());

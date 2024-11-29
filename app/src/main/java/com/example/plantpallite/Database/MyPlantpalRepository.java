@@ -125,7 +125,7 @@ public class MyPlantpalRepository {
 
     /**
      * Insert a new plant into the database.
-     * This operation is executed asynchronously.
+     * xecuted asynchronously.
      */
     public void insertPlant(Plant plant) {
         MyRoomDatabase.databaseWriteExecutor.execute(() -> plantDAO.insertPlant(plant));
@@ -147,7 +147,7 @@ public class MyPlantpalRepository {
 
     /**
      * Get all plants for a specific user ID as a LiveData object.
-     * This allows real-time updates to the UI.
+     * real-time updates to the UI.
      */
     public LiveData<List<Plant>> getPlantsByUserId(int userId) {
         return plantDAO.getPlantsByUserId(userId);
@@ -155,7 +155,7 @@ public class MyPlantpalRepository {
 
     /**
      * Get details of a specific plant by its ID.
-     * This operation is executed asynchronously using a Future.
+     * executed asynchronously using a Future.
      */
     public LiveData<Plant> getPlantById(int plantId) {
         try {
@@ -171,7 +171,7 @@ public class MyPlantpalRepository {
 
 
     /**
-     * Get a list of plants with upcoming tasks (e.g., watering or fertilizing).
+     * Get a list of plants with upcoming tasks
      */
     public LiveData<List<Plant>> getPlantsWithUpcomingTasks(long upcomingDate) {
         return plantDAO.getPlantsWithUpcomingTasks(upcomingDate);

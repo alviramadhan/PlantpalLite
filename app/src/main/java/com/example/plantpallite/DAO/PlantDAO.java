@@ -39,6 +39,5 @@ public interface PlantDAO {
     @Query("SELECT * FROM PLANT WHERE LAST_UPDATE < :upcomingDate")
     LiveData<List<Plant>> getPlantsWithUpcomingTasks(long upcomingDate);
 
-
 }
 
