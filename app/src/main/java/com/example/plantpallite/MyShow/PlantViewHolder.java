@@ -30,4 +30,6 @@ public class PlantViewHolder extends RecyclerView.ViewHolder {
         editPlantButton = itemView.findViewById(R.id.button);
         plantCard = itemView.findViewById(R.id.plantCardView);
     }
+
+
 }

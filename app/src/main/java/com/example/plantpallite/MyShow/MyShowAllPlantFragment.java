@@ -12,6 +12,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,7 +61,7 @@ public class MyShowAllPlantFragment extends Fragment {
                     Navigation.findNavController(view).navigate(R.id.action_myShowAllPlantFragment_to_myPlantInfoFragment, bundle);
                 },
                 plant -> {
-                    // Edit plant logic (optional)
+                    // Edit plant logic
                 }
         );
         recyclerView.setAdapter(plantViewAdapter);
@@ -69,6 +70,7 @@ public class MyShowAllPlantFragment extends Fragment {
         //I just use the admin ID for prototype
         mViewModel.getPlantsByUserId(1).observe(getViewLifecycleOwner(), plants -> {
             if (plants != null) {
+                Log.d("PlantListSize", "Number of plants: " + plants.size());
                 plantViewAdapter.updateData(plants);
             }
         });

@@ -40,7 +40,13 @@ public class MyPlantScheduleFragment extends Fragment {
         return binding.getRoot();
     }
 
-    @Override
+    /**
+     * I will work on the dynamic part later.
+     * For now, the schedule will use hardcoded data
+     * /
+     *
+*/
+     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -48,26 +54,31 @@ public class MyPlantScheduleFragment extends Fragment {
 
         if (plantId == -1) {
             Snackbar.make(view, "Plant ID not provided!", Snackbar.LENGTH_SHORT).show();
+            Log.e("MyPlantScheduleFragment", "Plant ID not passed or invalid!");
             return;
         }
 
+        Log.d("MyPlantScheduleFragment", "Plant ID retrieved: " + plantId);
+
         mViewModel = new ViewModelProvider(this).get(MyPlantScheduleViewModel.class);
 
-        // Observe the plant data
-        mViewModel.getPlantById(plantId).observe(getViewLifecycleOwner(), plant -> {
+        mViewModel.getPlantById(1).observe(getViewLifecycleOwner(), plant -> {
             if (plant != null) {
                 populateSchedules(plant);
             } else {
                 Snackbar.make(view, "Plant not found!", Snackbar.LENGTH_SHORT).show();
+                Log.e("MyPlantScheduleFragment", "Plant data not found for ID: " + plantId);
             }
         });
 
-        //Binding to Info Tab
         binding.infoTabButton.setOnClickListener(v -> {
             NavController navController = Navigation.findNavController(v);
-            navController.navigate(R.id.action_myPlantScheduleFragment_to_myPlantInfoFragment);
+            Bundle args = new Bundle();
+            args.putInt("plantId", plantId); // Pass back the plantId
+            navController.navigate(R.id.action_myPlantScheduleFragment_to_myPlantInfoFragment, args);
         });
     }
+
 
     private void populateSchedules(Plant plant) {
 
@@ -102,17 +113,24 @@ public class MyPlantScheduleFragment extends Fragment {
             container.addView(checkBox);
         }
     }
+     // method to parse String to Date
+     private Date parseDate(String dateString) {
+     try {
+     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+     return dateFormat.parse(dateString);
+     } catch (ParseException e) {
+     e.printStackTrace();
+     return new Date(); // Default to current date if parsing fails
+     }
+     }
 
-    // Helper method to parse String to Date
-    private Date parseDate(String dateString) {
-        try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-            return dateFormat.parse(dateString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return new Date(); // Default to current date if parsing fails
-        }
-    }
+
+
+
+
+
+
+
 
 
     @Override
