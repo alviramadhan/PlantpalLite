@@ -53,6 +53,7 @@ public class MyShowAllPlantFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         // Initialize the adapter
         plantViewAdapter = new PlantViewAdapter(
+                //the constructor use list, clickListener, edit listener
                 null,
                 plant -> {
                     // Navigate to Plant Info screen
@@ -63,6 +64,7 @@ public class MyShowAllPlantFragment extends Fragment {
                 plant -> {
                     // Edit plant logic
                 }
+
         );
         recyclerView.setAdapter(plantViewAdapter);
 

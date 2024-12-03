@@ -35,7 +35,7 @@ public class MyPlantScheduleFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-       // return inflater.inflate(R.layout.my_plant_schedule_fragment, container, false);
+        // return inflater.inflate(R.layout.my_plant_schedule_fragment, container, false);
         binding = MyPlantScheduleFragmentBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -44,27 +44,37 @@ public class MyPlantScheduleFragment extends Fragment {
      * I will work on the dynamic part later.
      * For now, the schedule will use hardcoded data
      * /
-     *
-*/
-     @Override
+     */
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        int plantId = getArguments() != null ? getArguments().getInt("plantId", -1) : -1;
 
-        if (plantId == -1) {
-            Snackbar.make(view, "Plant ID not provided!", Snackbar.LENGTH_SHORT).show();
-            Log.e("MyPlantScheduleFragment", "Plant ID not passed or invalid!");
-            return;
-        }
-
-        Log.d("MyPlantScheduleFragment", "Plant ID retrieved: " + plantId);
-
+        //initalize view model
         mViewModel = new ViewModelProvider(this).get(MyPlantScheduleViewModel.class);
+        // Retrieve Plant ID from arguments
+//        Bundle args = getArguments();
+//        if (args == null || !args.containsKey("plantId")) {
+//            Log.e("MyPlantInfoFragment", "Plant ID not passed!");
+//            return;
+//        }
 
-        mViewModel.getPlantById(1).observe(getViewLifecycleOwner(), plant -> {
+        Bundle args = getArguments();
+        assert args != null; //prevent accessing nul args
+        int plantId = args.getInt("plantID", -1); // Default to -1 if plantId is not found
+
+        if (plantId != -1) {
+            Log.d("MyPlantScheduleFragment", "Retrieved plantId in schedule: " + plantId);
+            // Use plantId as needed
+        } else {
+            Log.e("MyPlantScheduleFragment", "Invalid plantId passed!");
+        }
+        // Observe plant details and bind to UI
+        mViewModel.getPlantById(plantId).observe(getViewLifecycleOwner(), this::bindPlantData);
+
+        mViewModel.getPlantById(plantId).observe(getViewLifecycleOwner(), plant -> {
             if (plant != null) {
-                populateSchedules(plant);
+           //       populateSchedules(plant);
             } else {
                 Snackbar.make(view, "Plant not found!", Snackbar.LENGTH_SHORT).show();
                 Log.e("MyPlantScheduleFragment", "Plant data not found for ID: " + plantId);
@@ -72,23 +82,44 @@ public class MyPlantScheduleFragment extends Fragment {
         });
 
         binding.infoTabButton.setOnClickListener(v -> {
-            NavController navController = Navigation.findNavController(v);
-            Bundle args = new Bundle();
-            args.putInt("plantId", plantId); // Pass back the plantId
-            navController.navigate(R.id.action_myPlantScheduleFragment_to_myPlantInfoFragment, args);
+            Bundle bundle = new Bundle();
+            bundle.putInt("plantId", plantId);
+            Navigation.findNavController(view).navigate(R.id.action_myPlantScheduleFragment_to_myPlantInfoFragment, bundle);
+
+            Log.d("MyPlantInfoFragment", "Passing plantId from SChedule: " + plantId);
         });
+
+        // Back button functionality
+        binding.plantScheduleBackButton.setOnClickListener(v ->Navigation.findNavController(v).navigate(R.id.action_myPlantScheduleFragment_to_myShowAllPlantFragment));
+
+    }
+
+
+    private void bindPlantData(Plant plant) {
+        if (plant == null) {
+            Log.e("MyPlantInfoFragment", "Plant not found!");
+            return;
+        }
+
+        // Update UI with plant data
+        binding.plantNameButton.setText(plant.getName());
+        binding.plantImage.setImageResource(R.drawable.plant_placeholder); // Placeholder image for now
+
     }
 
 
     private void populateSchedules(Plant plant) {
 
-        // Retrieve Plant ID
         Bundle args = getArguments();
-        if (args == null || !args.containsKey("plantId")) {
-            Log.e("MyPlantScheduleFragment", "Plant ID not passed!");
-            return;
+        assert args != null; //prevent accessing nul args
+        int plantId = args.getInt("plantID", -1); // Default to -1 if plantId is not found
+
+        if (plantId != -1) {
+            Log.d("MyPlantScheduleFragment", "Retrieved plantId in schedule2: " + plantId);
+            // Use plantId as needed
+        } else {
+            Log.e("MyPlantScheduleFragment", "Invalid plantId passed!");
         }
-        int plantId = args.getInt("plantId");
 
         // Parse frequencies
         int wateringFrequency = Integer.parseInt(plant.getWateringFrequency());
@@ -113,29 +144,21 @@ public class MyPlantScheduleFragment extends Fragment {
             container.addView(checkBox);
         }
     }
-     // method to parse String to Date
-     private Date parseDate(String dateString) {
-     try {
-     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-     return dateFormat.parse(dateString);
-     } catch (ParseException e) {
-     e.printStackTrace();
-     return new Date(); // Default to current date if parsing fails
-     }
-     }
 
-
-
-
-
-
-
-
-
+    // method to parse String to Date
+    private Date parseDate(String dateString) {
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+            return dateFormat.parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return new Date(); // Default to current date if parsing fails
+        }
+    }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
     }
-}
+ }

@@ -51,32 +51,58 @@ public class MyPlantInfoFragment extends Fragment {
 
         // Initialize ViewModel directly
         mViewModel = new ViewModelProvider(this).get(MyPlantInfoViewModel.class);
+//
+//        // Retrieve Plant ID from arguments
+//        Bundle args = getArguments();
+//        if (args == null || !args.containsKey("plantId")) {
+//            Log.e("MyPlantInfoFragment", "Plant ID not passed!");
+//            return;
+//        }
+//        int plantId = args.getInt("plantId");
+//        Log.d("MyPlantInfoFragment", "Retrieved plantId in info: " + plantId);
+//
+//        // Observe plant details and bind to UI
+//        mViewModel.getPlantById(plantId).observe(getViewLifecycleOwner(), this::bindPlantData);
 
-        // Retrieve Plant ID from arguments
+        // nEW Retrieve arguments
         Bundle args = getArguments();
-        if (args == null || !args.containsKey("plantId")) {
-            Log.e("MyPlantInfoFragment", "Plant ID not passed!");
-            return;
-        }
-        int plantId = args.getInt("plantId");
+        assert args != null; //prevent accessing null args
+        int plantId = args.getInt("plantId", -1); // Default to -1 if not found
 
-        // Observe plant details and bind to UI
-        mViewModel.getPlantById(plantId).observe(getViewLifecycleOwner(), this::bindPlantData);
+        if (args.containsKey("plantId")) {
+                Log.d("MyPlantInfoFragment", "Retrieved plantId: " + plantId);
+
+            if (plantId != -1) {
+                // Use the plantId to fetch plant details
+                mViewModel.getPlantById(plantId).observe(getViewLifecycleOwner(), this::bindPlantData);
+            } else {
+                Log.e("MyPlantInfoFragment", "Invalid plantId passed!");
+            }
+        } else {
+            Log.e("MyPlantInfoFragment", "No plantId passed!");
+        }
 
         //Schedule tab
-
-
         binding.scheduleTabButton.setOnClickListener(v -> {
-            NavController navController = Navigation.findNavController(v);
-            args.putInt("plantId", plantId); // Pass the plantId
-            navController.navigate(R.id.action_myPlantInfoFragment_to_myPlantScheduleFragment, args);
+//            NavController navController = Navigation.findNavController(v);
+//            args.putInt("plantId", plantId); // Pass the plantId
+//            navController.navigate(R.id.action_myPlantInfoFragment_to_myPlantScheduleFragment, args);
+
+            Bundle bundle = new Bundle();
+            bundle.putInt("plantID", plantId);
+            Navigation.findNavController(view).navigate(R.id.action_myPlantInfoFragment_to_myPlantScheduleFragment, bundle);
+
+            Log.d("MyPlantInfoFragment", "Passing plantId: " + plantId);
+
+
+
         });
 
 
 
 
         // Back button functionality
-      //  binding.backButton.setOnClickListener(v -> Navigation.findNavController(v).navigateUp());
+        binding.plantInfoBackButton.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_myPlantInfoFragment_to_myShowAllPlantFragment));
     }
 
     private void bindPlantData(Plant plant) {

@@ -21,6 +21,7 @@ public class PlantViewAdapter extends RecyclerView.Adapter<PlantViewHolder> {
     private final OnPlantClickListener clickListener;
     private final OnPlantEditListener editListener;
 
+
     // Constructor
     public PlantViewAdapter(List<Plant> plants, OnPlantClickListener clickListener, OnPlantEditListener editListener) {
         this.plants = plants;
