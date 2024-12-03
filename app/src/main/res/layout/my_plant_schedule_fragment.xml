@@ -178,6 +178,39 @@
         app:layout_constraintStart_toStartOf="@+id/guideline9"
         app:layout_constraintTop_toBottomOf="@id/fertilizingTitle">
 
+        <TextView
+            android:id="@+id/fertilizingDateText4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Date 4"
+            android:textAlignment="textStart"
+            app:layout_constraintEnd_toEndOf="@+id/fertilizingCheckbox4"
+            app:layout_constraintStart_toStartOf="@+id/fertilizingCheckbox4"
+            app:layout_constraintTop_toBottomOf="@+id/fertilizingCheckbox4" />
+
+        <TextView
+            android:id="@+id/fertilizingDateText3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Date 3"
+            android:textAlignment="textStart"
+            app:layout_constraintEnd_toEndOf="@+id/fertilizingCheckbox3"
+            app:layout_constraintStart_toStartOf="@+id/fertilizingCheckbox3"
+            app:layout_constraintTop_toBottomOf="@+id/fertilizingCheckbox3" />
+
+        <TextView
+            android:id="@+id/fertilizingDateText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Date 2"
+            android:textAlignment="textStart"
+            app:layout_constraintEnd_toEndOf="@+id/fertilizingCheckbox2"
+            app:layout_constraintStart_toStartOf="@+id/fertilizingCheckbox2"
+            app:layout_constraintTop_toBottomOf="@+id/fertilizingCheckbox2" />
+
         <CheckBox
             android:id="@+id/fertilizingCheckbox1"
             android:layout_width="wrap_content"
@@ -189,22 +222,36 @@
             android:id="@+id/fertilizingCheckbox2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fertilizingCheckbox1" />
+            android:layout_marginStart="32dp"
+            app:layout_constraintStart_toEndOf="@+id/fertilizingCheckbox1"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <CheckBox
             android:id="@+id/fertilizingCheckbox3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fertilizingCheckbox2" />
+            android:layout_marginStart="32dp"
+            app:layout_constraintStart_toEndOf="@+id/fertilizingCheckbox2"
+            app:layout_constraintTop_toTopOf="@+id/fertilizingCheckbox2" />
 
         <CheckBox
             android:id="@+id/fertilizingCheckbox4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fertilizingCheckbox3" />
+            android:layout_marginStart="32dp"
+            app:layout_constraintStart_toEndOf="@+id/fertilizingCheckbox3"
+            app:layout_constraintTop_toTopOf="@+id/fertilizingCheckbox3" />
+
+        <TextView
+            android:id="@+id/fertilizingDateText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Date 1"
+            android:textAlignment="textStart"
+            app:layout_constraintEnd_toEndOf="@+id/fertilizingCheckbox1"
+            app:layout_constraintStart_toStartOf="@+id/fertilizingCheckbox1"
+            app:layout_constraintTop_toBottomOf="@+id/fertilizingCheckbox1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
