@@ -80,16 +80,138 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/wateringScheduleLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@+id/wateringTitle">
+
+        <TextView
+            android:id="@+id/wateringDateText4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Date 4"
+            android:textAlignment="textStart"
+            app:layout_constraintEnd_toEndOf="@+id/wateringCheckbox4"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/wateringCheckbox4"
+            app:layout_constraintTop_toBottomOf="@+id/wateringCheckbox4" />
+
+        <CheckBox
+            android:id="@+id/wateringCheckbox1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/wateringDateText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Date 1"
+            android:textAlignment="textStart"
+            app:layout_constraintEnd_toEndOf="@+id/wateringCheckbox1"
+            app:layout_constraintStart_toStartOf="@+id/wateringCheckbox1"
+            app:layout_constraintTop_toBottomOf="@+id/wateringCheckbox1" />
+
+        <CheckBox
+            android:id="@+id/wateringCheckbox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            app:layout_constraintStart_toEndOf="@+id/wateringCheckbox1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <CheckBox
+            android:id="@+id/wateringCheckbox3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            app:layout_constraintStart_toEndOf="@+id/wateringCheckbox2"
+            app:layout_constraintTop_toTopOf="@+id/wateringCheckbox2" />
+
+        <CheckBox
+            android:id="@+id/wateringCheckbox4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            app:layout_constraintStart_toEndOf="@+id/wateringCheckbox3"
+            app:layout_constraintTop_toTopOf="@+id/wateringCheckbox2" />
+
+        <TextView
+            android:id="@+id/wateringDateText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Date 2"
+            android:textAlignment="textStart"
+            app:layout_constraintEnd_toEndOf="@+id/wateringCheckbox2"
+            app:layout_constraintStart_toStartOf="@+id/wateringCheckbox2"
+            app:layout_constraintTop_toBottomOf="@+id/wateringCheckbox2" />
+
+        <TextView
+            android:id="@+id/wateringDateText3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Date 3"
+            android:textAlignment="textStart"
+            app:layout_constraintEnd_toEndOf="@+id/wateringCheckbox3"
+            app:layout_constraintHorizontal_bias="0.51"
+            app:layout_constraintStart_toStartOf="@+id/wateringCheckbox3"
+            app:layout_constraintTop_toBottomOf="@+id/wateringCheckbox3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fertilizingScheduleLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:padding="16dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline12"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toBottomOf="@id/wateringTitle">
+        app:layout_constraintTop_toBottomOf="@id/fertilizingTitle">
 
-        <!-- Dynamic Watering Schedule Checkboxes Will Be Added Here -->
+        <CheckBox
+            android:id="@+id/fertilizingCheckbox1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fertilize on 26/11/2024"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <CheckBox
+            android:id="@+id/fertilizingCheckbox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fertilize on 03/12/2024"
+            app:layout_constraintTop_toBottomOf="@id/fertilizingCheckbox1"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <CheckBox
+            android:id="@+id/fertilizingCheckbox3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fertilize on 10/12/2024"
+            app:layout_constraintTop_toBottomOf="@id/fertilizingCheckbox2"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <CheckBox
+            android:id="@+id/fertilizingCheckbox4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fertilize on 17/12/2024"
+            app:layout_constraintTop_toBottomOf="@id/fertilizingCheckbox3"
+            app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <TextView
         android:id="@+id/fertilizingTitle"
@@ -102,18 +224,6 @@
         app:layout_constraintStart_toStartOf="@+id/guideline9"
         app:layout_constraintTop_toBottomOf="@id/wateringScheduleLayout" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/fertilizingScheduleLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:padding="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline12"
-        app:layout_constraintStart_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toBottomOf="@id/fertilizingTitle">
-
-        <!-- Dynamic Fertilizing Schedule Checkboxes Will Be Added Here -->
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Edit Schedule Button -->
     <Button
