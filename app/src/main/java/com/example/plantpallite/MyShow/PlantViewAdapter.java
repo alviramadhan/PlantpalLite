@@ -18,11 +18,15 @@ public class PlantViewAdapter extends RecyclerView.Adapter<PlantViewHolder> {
 
 
     private List<Plant> plants;
-    private OnPlantEditListener listener;
+    private final OnPlantClickListener clickListener;
+    private final OnPlantEditListener editListener;
 
-    public PlantViewAdapter(List<Plant> plants, OnPlantEditListener listener) {
+
+    // Constructor
+    public PlantViewAdapter(List<Plant> plants, OnPlantClickListener clickListener, OnPlantEditListener editListener) {
         this.plants = plants;
-        this.listener = listener;
+        this.clickListener = clickListener;
+        this.editListener = editListener;
     }
 
     @NonNull
@@ -40,26 +44,40 @@ public class PlantViewAdapter extends RecyclerView.Adapter<PlantViewHolder> {
         // Bind plant data to views
         holder.plantNameText.setText(plant.getName());
         holder.plantTypeText.setText(plant.getType());
-        holder.nextWateringDateText.setText("Next Watering Date: " + plant.getWateringFrequency());
-        holder.nextFertilizingDateText.setText("Next Fertilizing Date: " + plant.getFertilizingFrequency());
+        holder.nextWateringDateText.setText("Next Watering: " + plant.getWateringFrequency());
+        holder.nextFertilizingDateText.setText("Next Fertilizing: " + plant.getFertilizingFrequency());
         holder.plantImage.setImageResource(R.drawable.plant_placeholder); // Placeholder image
 
+        // Handle clicks
+        holder.plantCard.setOnClickListener(v -> {
+            if (clickListener != null) {
+                clickListener.onPlantClick(plant);
+            }
+        });
 
-
-        // Handle "Edit Plant" button click
         holder.editPlantButton.setOnClickListener(v -> {
-            if (listener != null) {
-                listener.onEdit(plant);
+            if (editListener != null) {
+                editListener.onPlantEdit(plant);
             }
         });
     }
-
     @Override
     public int getItemCount() {
         return plants != null ? plants.size() : 0;
     }
 
+    // Update the list of plants
+    public void updateData(List<Plant> newPlants) {
+        this.plants = newPlants;
+        notifyDataSetChanged();
+    }
+
+    // Interface for click listener
+    public interface OnPlantClickListener {
+        void onPlantClick(Plant plant);
+    }
+
     public interface OnPlantEditListener {
-        void onEdit(Plant plant);
+        void onPlantEdit(Plant plant);
     }
 }

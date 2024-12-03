@@ -12,6 +12,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,18 +51,30 @@ public class MyShowAllPlantFragment extends Fragment {
         // Setup RecyclerView
         RecyclerView recyclerView = binding.plantCardsRecyclerView; // Replace with actual RecyclerView ID
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        plantViewAdapter = new PlantViewAdapter(null, plant -> {
-            // Navigate to EditPlantFragment with selected plant
-            // Placeholder for edit action
-        });
+        // Initialize the adapter
+        plantViewAdapter = new PlantViewAdapter(
+                //the constructor use list, clickListener, edit listener
+                null,
+                plant -> {
+                    // Navigate to Plant Info screen
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("plantId", plant.getId());
+                    Navigation.findNavController(view).navigate(R.id.action_myShowAllPlantFragment_to_myPlantInfoFragment, bundle);
+                },
+                plant -> {
+                    // Edit plant logic
+                }
+
+        );
         recyclerView.setAdapter(plantViewAdapter);
 
         // Observe LiveData from ViewModel
+        //I just use the admin ID for prototype
         mViewModel.getPlantsByUserId(1).observe(getViewLifecycleOwner(), plants -> {
-            plantViewAdapter = new PlantViewAdapter(plants, plant -> {
-                // Navigate to EditPlantFragment or handle plant edit
-            });
-            recyclerView.setAdapter(plantViewAdapter);
+            if (plants != null) {
+                Log.d("PlantListSize", "Number of plants: " + plants.size());
+                plantViewAdapter.updateData(plants);
+            }
         });
 
         // Add button functionality
@@ -69,7 +82,6 @@ public class MyShowAllPlantFragment extends Fragment {
             NavController navController = Navigation.findNavController(v);
             navController.navigate(R.id.action_myShowAllPlantFragment_to_myAddPlantFragment);
         });
-
 
 
 

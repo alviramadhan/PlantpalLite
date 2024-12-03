@@ -37,5 +37,34 @@
         android:id="@+id/myPlantInfoFragment"
         android:name="com.example.plantpallite.MyShow.MyPlantInfoFragment"
         android:label="my_plant_info_fragment"
-        tools:layout="@layout/my_plant_info_fragment" />
+        tools:layout="@layout/my_plant_info_fragment" >
+        <argument
+            android:name="plantId"
+            app:argType="integer"
+            android:defaultValue="0"/>
+        <action
+            android:id="@+id/action_myPlantInfoFragment_to_myPlantScheduleFragment"
+            app:destination="@id/myPlantScheduleFragment" />
+        <action
+            android:id="@+id/action_myPlantInfoFragment_to_myShowAllPlantFragment"
+            app:destination="@id/myShowAllPlantFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myPlantScheduleFragment"
+        android:name="com.example.plantpallite.MyShow.MyPlantScheduleFragment"
+        android:label="my_plant_schedule_fragment"
+        tools:layout="@layout/my_plant_schedule_fragment" >
+        <argument
+            android:name="plantId"
+            app:argType="integer"
+            android:defaultValue="0"/>
+        <action
+            android:id="@+id/action_myPlantScheduleFragment_to_myPlantInfoFragment"
+            app:destination="@id/myPlantInfoFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_myPlantScheduleFragment_to_myShowAllPlantFragment"
+            app:destination="@id/myShowAllPlantFragment" />
+
+    </fragment>
 </navigation>

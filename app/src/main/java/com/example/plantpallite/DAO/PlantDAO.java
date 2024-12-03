@@ -24,8 +24,8 @@ public interface PlantDAO {
     LiveData<List<Plant>> getPlantsByUserId(int userId);
 
     // Get a plant by its ID
-    @Query("SELECT * FROM PLANT WHERE ID = :plantId LIMIT 1")
-    Plant getPlantById(int plantId);
+    @Query("SELECT * FROM PLANT WHERE ID = :plantId")
+    LiveData<Plant> getPlantById(int plantId);
 
     // Update a plant
     @Update
@@ -38,7 +38,6 @@ public interface PlantDAO {
     // Get plants with upcoming tasks (e.g., watering, fertilizing)
     @Query("SELECT * FROM PLANT WHERE LAST_UPDATE < :upcomingDate")
     LiveData<List<Plant>> getPlantsWithUpcomingTasks(long upcomingDate);
-
 
 }
 

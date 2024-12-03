@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundIvoryWhite"
+    tools:context=".MyShow.MyPlantScheduleFragment">
+
+
+    <Button
+        android:id="@+id/plantNameButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/buttonSecondary"
+        android:clickable="false"
+        android:contextClickable="false"
+        android:text="Plant Name"
+        android:textColor="@color/textNormal"
+        app:layout_constraintBottom_toTopOf="@+id/plantImage"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/plantImage"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:contentDescription="Plant Image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/plant_placeholder"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@id/plantNameButton" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tabLayoutContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@id/plantImage">
+
+        <Button
+            android:id="@+id/infoTabButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/buttonSecondary"
+            android:text="Info"
+            app:layout_constraintEnd_toStartOf="@+id/scheduleTabButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.5" />
+
+        <Button
+            android:id="@+id/scheduleTabButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/buttonPrimary"
+            android:text="Schedule"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/infoTabButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.5" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Section Titles -->
+    <TextView
+        android:id="@+id/wateringTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Watering:"
+        android:textColor="@color/textNormal"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayoutContainer" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/wateringScheduleLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@id/wateringTitle">
+
+        <!-- Dynamic Watering Schedule Checkboxes Will Be Added Here -->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/fertilizingTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Fertilizing:"
+        android:textColor="@color/textNormal"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@id/wateringScheduleLayout" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fertilizingScheduleLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@id/fertilizingTitle">
+
+        <!-- Dynamic Fertilizing Schedule Checkboxes Will Be Added Here -->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Edit Schedule Button -->
+    <Button
+        android:id="@+id/editScheduleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Edit Schedule"
+        android:backgroundTint="@color/accent"
+        android:textColor="@color/textNormal"
+        app:layout_constraintTop_toBottomOf="@id/fertilizingScheduleLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.03" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".97" />
+
+    <ImageButton
+        android:id="@+id/plantScheduleBackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="6dp"
+        android:backgroundTint="@color/backgroundIvoryWhite"
+        android:src="@drawable/arrow_back_24"
+        app:tint="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
