@@ -11,6 +11,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,8 +83,12 @@ public class MyLoginFragment extends Fragment {
                 mViewModel.login(email, password).observe(getViewLifecycleOwner(), user -> {
         if (user != null) {
 // Navigate to the next fragment on successful login
-NavController navController = Navigation.findNavController(view);
-            navController.navigate(R.id.action_myLoginFragment_to_myShowAllPlantFragment);
+            Bundle bundle = new Bundle();
+            int userId = user.getUserId();
+            bundle.putInt("userID", userId); // Replace with actual userID
+            Navigation.findNavController(view).navigate(R.id.action_myLoginFragment_to_myShowAllPlantFragment, bundle);
+            Log.d("MYLoginFragment", "Passing userId: " + user.getUserId());
+
         } else {
                 // Show error message if login failed
                 Snackbar.make(view, "Invalid email or password.", Snackbar.LENGTH_LONG).show();

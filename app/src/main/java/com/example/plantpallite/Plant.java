@@ -45,20 +45,16 @@ import java.util.Date;
         @ColumnInfo(name = "LAST_UPDATE")
         private Date lastUpdate;  // Timestamp of the last update
 
+
+    @ColumnInfo(name = "LAST_WATERING_DATE")
+    private Date lastWateringDate;
+    @ColumnInfo(name = "LAST_FERTILIZING_DATE")
+    private Date lastFertilizingDate;
+
         @ColumnInfo(name = "IMAGE_URL")
         private String image;    // URL or file path of the plant image
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    // Constructor
-    public Plant(Integer id, String name, String type, String wateringFrequency, String fertilizingFrequency,
-                 long plantingDate, Integer userID, Date lastUpdate, String image) {
+    public Plant(Integer id, String name, String type, String wateringFrequency, String fertilizingFrequency, long plantingDate, Integer userID, Date lastUpdate, Date lastWateringDate, Date lastFertilizingDate, String image) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -67,7 +63,18 @@ import java.util.Date;
         this.plantingDate = plantingDate;
         this.userID = userID;
         this.lastUpdate = lastUpdate;
+        this.lastWateringDate = lastWateringDate;
+        this.lastFertilizingDate = lastFertilizingDate;
         this.image = image;
+    }
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     // Default constructor
@@ -133,6 +140,22 @@ import java.util.Date;
 
     public String getImage() {
         return image;
+    }
+
+    public Date getLastWateringDate() {
+        return lastWateringDate;
+    }
+
+    public void setLastWateringDate(Date lastWateringDate) {
+        this.lastWateringDate = lastWateringDate;
+    }
+
+    public Date getLastFertilizingDate() {
+        return lastFertilizingDate;
+    }
+
+    public void setLastFertilizingDate(Date lastFertilizingDate) {
+        this.lastFertilizingDate = lastFertilizingDate;
     }
 
     public void setImage(String image) {

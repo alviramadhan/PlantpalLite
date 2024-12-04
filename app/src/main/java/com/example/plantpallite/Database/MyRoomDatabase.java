@@ -81,13 +81,13 @@ public abstract class MyRoomDatabase extends RoomDatabase {
             // Insert default plants
             PlantDAO plantDAO = instance.plantDAO();
             plantDAO.insertPlant(new Plant(1, "Rose", "Outdoor", "Daily", "Weekly",
-                    System.currentTimeMillis(), 1, new Date(System.currentTimeMillis()), null));
+                    System.currentTimeMillis(), 1, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()), null));
             plantDAO.insertPlant(new Plant(2, "Cactus", "Indoor","Weekly", "Monthly",
-                    System.currentTimeMillis(), 2, new Date(System.currentTimeMillis()), null));
+                    System.currentTimeMillis(), 2, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()), null));
             plantDAO.insertPlant(new Plant(3, "Peach", "Indoor", "Daily", "Weekly",
-                    System.currentTimeMillis(), 1, new Date(System.currentTimeMillis()), null));
+                    System.currentTimeMillis(), 1, new Date(System.currentTimeMillis()),new Date(System.currentTimeMillis()),new Date(System.currentTimeMillis()), null));
             plantDAO.insertPlant(new Plant(4, "Jasmine", "Indoor","Weekly", "Monthly",
-                    System.currentTimeMillis(), 2, new Date(System.currentTimeMillis()), null));
+                    System.currentTimeMillis(), 2, new Date(System.currentTimeMillis()),new Date(System.currentTimeMillis()),new Date(System.currentTimeMillis()),null));
 
         });
     }

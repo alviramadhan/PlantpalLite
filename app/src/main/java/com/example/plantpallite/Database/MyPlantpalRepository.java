@@ -9,6 +9,7 @@ import com.example.plantpallite.DAO.UserDAO;
 import com.example.plantpallite.Plant;
 import com.example.plantpallite.User;
 
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -169,6 +170,18 @@ public class MyPlantpalRepository {
         }
     }
 
+    public void updateLastWateringDate(int plantId, Date newDate) {
+        plantDAO.updateLastWateringDate(plantId, newDate);
+    }
+
+    public void updateLastFertilizingDate(int plantId, Date newDate) {
+        plantDAO.updateLastFertilizingDate(plantId, newDate);
+    }
+
+    public  void  setLastUpdate(int plantId, Date newDate)
+    {
+        plantDAO.setLastUpdate(plantId, newDate);
+    }
 
     /**
      * Get a list of plants with upcoming tasks

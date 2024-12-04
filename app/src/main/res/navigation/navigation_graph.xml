@@ -15,6 +15,10 @@
             app:destination="@id/myShowAllPlantFragment"
             app:popUpTo="@id/myLoginFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="userId"
+            app:argType="integer"
+            android:defaultValue="-1" />
     </fragment>
     <fragment
         android:id="@+id/myShowAllPlantFragment"
@@ -27,12 +31,21 @@
         <action
             android:id="@+id/action_myShowAllPlantFragment_to_myPlantInfoFragment"
             app:destination="@id/myPlantInfoFragment" />
+        <argument
+            android:name="userId"
+            app:argType="integer"
+            android:defaultValue="-1" />
     </fragment>
     <fragment
         android:id="@+id/myAddPlantFragment"
         android:name="com.example.plantpallite.MyAdd.MyAddPlantFragment"
         android:label="my_add_plant_fragment"
-        tools:layout="@layout/my_add_plant_fragment" />
+        tools:layout="@layout/my_add_plant_fragment" >
+        <argument
+            android:name="userId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
     <fragment
         android:id="@+id/myPlantInfoFragment"
         android:name="com.example.plantpallite.MyShow.MyPlantInfoFragment"
