@@ -7,7 +7,7 @@
     android:background="@color/backgroundIvoryWhite"
     tools:context=".MyShow.MyShowAllPlantFragment">
 
-    <!-- Guideline 5 (Start margin) -->
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
         android:layout_width="wrap_content"
@@ -15,7 +15,6 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.03" />
 
-    <!-- Guideline 7 (End margin) -->
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline7"
         android:layout_width="wrap_content"
@@ -23,7 +22,7 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.97" />
 
-    <!-- Upcoming Tasks Container -->
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/upcomingTasksContainer"
         android:layout_width="wrap_content"
@@ -40,9 +39,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
-    <!-- RecyclerView for Plant Cards -->
-
-    <!-- Floating Action Button -->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/plantCardsRecyclerView"

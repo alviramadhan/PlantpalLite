@@ -118,9 +118,14 @@ public class MyPlantpalRepository {
     /**
      * Delete a user from the database.
      */
-    public void deleteUser(User user) {
-        MyRoomDatabase.databaseWriteExecutor.execute(() -> userDAO.deleteUser(user));
-    }
+    public void deleteUser(int userId) {
+        MyRoomDatabase.databaseWriteExecutor.execute(() -> {
+            User user = userDAO.getUserById(userId); // Fetch user by ID
+            if (user != null) {
+                userDAO.deleteUser(user); // Delete the fetched user
+            }
+        });
+        }
 
     // ------------------- PLANT OPERATIONS -------------------
 

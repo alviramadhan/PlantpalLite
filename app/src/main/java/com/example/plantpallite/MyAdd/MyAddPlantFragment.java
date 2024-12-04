@@ -144,6 +144,7 @@ public class MyAddPlantFragment extends Fragment {
                 myPlant.setWateringFrequency(wateringFrequency);
                 myPlant.setFertilizingFrequency(fertilizerFrequency);
                 myPlant.setLastUpdate(new Date(System.currentTimeMillis()));
+                myPlant.setPlantingDate(new Date(System.currentTimeMillis()));
 
                 mViewModel.saveNewPlant();
                 Snackbar.make(view, "Saved!\n" + myPlant.toString(), Snackbar.LENGTH_LONG).setTextMaxLines(8).show();

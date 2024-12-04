@@ -36,15 +36,22 @@ public class MyAccountFragment extends Fragment {
 
         mViewModel = new ViewModelProvider(this).get(MyAccountViewModel.class);
 
-        // Retrieve userId from arguments
+        /// Retrieve userId from arguments
         Bundle args = getArguments();
-        int userId = -1; // Default invalid ID
-        if (args != null && args.containsKey("userId")) {
-            userId = args.getInt("userId");
-            Log.d("MyAccountFragment", "Retrieved userId: " + userId);
-        } else {
-            Log.e("MyAccountFragment", "userId not passed!");
+        int userId = (args != null) ? args.getInt("userId", -1) : -1;
+
+        if (userId == -1) {
+            Log.e("MyShowAll", "Invalid userId passed!");
         }
+        Log.d("MyAccount", "Retrieved userId: " + userId);
+
+        //delete button
+        binding.deleteAccountButton.setOnClickListener(v -> {
+            mViewModel.deleteAccount(userId);
+            // Navigate back to the login screen
+            NavController navController = Navigation.findNavController(v);
+            navController.navigate(R.id.action_myAccountFragment2_to_myLoginFragment);
+        });
 
         // Logout button functionality
         binding.logOutButton.setOnClickListener(v -> {

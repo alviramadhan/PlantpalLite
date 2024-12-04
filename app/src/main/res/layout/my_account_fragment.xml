@@ -9,6 +9,20 @@
     tools:context=".MyShow.MyPlantInfoFragment">
 
     <Button
+        android:id="@+id/deleteAccountButton"
+        android:layout_width="252dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/buttonSecondary"
+        android:text="Delete Account"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logOutButton"
+        app:layout_constraintVertical_bias="0.18" />
+
+    <Button
         android:id="@+id/logOutButton"
         android:layout_width="252dp"
         android:layout_height="48dp"

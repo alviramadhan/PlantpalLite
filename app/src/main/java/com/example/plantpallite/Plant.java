@@ -37,7 +37,7 @@ import java.util.Date;
         private String fertilizingFrequency;  // Fertilizing frequency
 
         @ColumnInfo(name = "PLANTING_DATE")
-        private long plantingDate;    // Timestamp of planting date (in milliseconds)
+        private Date plantingDate;    // Timestamp of planting date (in milliseconds)
 
         @ColumnInfo(name = "USER_ID")
         private Integer userID;  // ID of the user who owns the plant
@@ -54,13 +54,13 @@ import java.util.Date;
         @ColumnInfo(name = "IMAGE_URL")
         private String image;    // URL or file path of the plant image
 
-    public Plant(Integer id, String name, String type, String wateringFrequency, String fertilizingFrequency, long plantingDate, Integer userID, Date lastUpdate, Date lastWateringDate, Date lastFertilizingDate, String image) {
+    public Plant(Integer id, String name, String type, String wateringFrequency, String fertilizingFrequency, long plantingDateMillis, Integer userID, Date lastUpdate, Date lastWateringDate, Date lastFertilizingDate, String image) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.wateringFrequency = wateringFrequency;
         this.fertilizingFrequency = fertilizingFrequency;
-        this.plantingDate = plantingDate;
+        this.plantingDate = new Date(plantingDateMillis); // Convert long to Date
         this.userID = userID;
         this.lastUpdate = lastUpdate;
         this.lastWateringDate = lastWateringDate;
@@ -114,11 +114,11 @@ import java.util.Date;
         this.fertilizingFrequency = fertilizingFrequency;
     }
 
-    public long getPlantingDate() {
+    public Date getPlantingDate() {
         return plantingDate;
     }
 
-    public void setPlantingDate(long plantingDate) {
+    public void setPlantingDate(Date plantingDate) {
         this.plantingDate = plantingDate;
     }
 
@@ -166,7 +166,8 @@ import java.util.Date;
     // Method to calculate plant age in days
     public long getPlantAgeInDays() {
         long currentTime = System.currentTimeMillis();
-        return (currentTime - plantingDate) / (1000 * 60 * 60 * 24); // Convert milliseconds to days
+        long plantingDateMillis = this.plantingDate.getTime();
+        return (currentTime - plantingDateMillis) / (1000 * 60 * 60 * 24); // Convert milliseconds to days
     }
 
     // Method to calculate days since the last update
