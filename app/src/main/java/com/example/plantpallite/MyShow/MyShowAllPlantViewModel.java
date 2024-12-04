@@ -31,25 +31,45 @@ public class MyShowAllPlantViewModel extends AndroidViewModel {
 //        return plants;
 //    }
 
+//    private final MyPlantpalRepository repository;
+//    private MutableLiveData<List<Plant>> plants = new MutableLiveData<>();
+//
+//    public MyShowAllPlantViewModel(@NonNull Application application) {
+//        super(application);
+//        repository = new MyPlantpalRepository(application);
+//    }
+//
+//    // Set userId and fetch plants
+//    public void fetchPlantsByUserId(int userId) {
+//        plants = (MutableLiveData<List<Plant>>) repository.getPlantsByUserId(userId);
+//        repository.getPlantsByUserId(userId).observeForever(plants::setValue);
+//    }
+//
+//
+//    // Expose LiveData to the fragment
+//    public LiveData<List<Plant>> getPlantsLiveData() {
+//        return repository.getPlantsByUserId(int userId);
+//    }
+
     private final MyPlantpalRepository repository;
-    private MutableLiveData<List<Plant>> plantsLiveData = new MutableLiveData<>();
+    private final MutableLiveData<List<Plant>> plants = new MutableLiveData<>();
 
     public MyShowAllPlantViewModel(@NonNull Application application) {
         super(application);
         repository = new MyPlantpalRepository(application);
     }
 
-    // Set userId and fetch plants
+    // Fetch plants for a specific userId
     public void fetchPlantsByUserId(int userId) {
-        if (userId != -1) {
-            repository.getPlantsByUserId(userId).observeForever(plantsLiveData::setValue);
+        if (userId != -1) { // Validate userId
+            repository.getPlantsByUserId(userId).observeForever(plants::setValue);
         } else {
-            plantsLiveData.setValue(new ArrayList<>()); // Empty list for invalid userId
+            plants.setValue(null); // Clear the list if userId is invalid
         }
     }
 
-    // Expose LiveData to the fragment
-    public LiveData<List<Plant>> getPlantsLiveData() {
-        return plantsLiveData;
+    // Expose plants LiveData to the fragment
+    public LiveData<List<Plant>> getPlants() {
+        return plants;
     }
 }
