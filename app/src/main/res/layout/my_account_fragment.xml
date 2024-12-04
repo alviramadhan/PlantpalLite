@@ -57,7 +57,7 @@
         android:backgroundTint="@color/buttonSecondary"
         android:clickable="false"
         android:contextClickable="false"
-        android:text="ccount Name"
+        android:text="Account"
         android:textColor="@color/textNormal"
         app:layout_constraintBottom_toTopOf="@+id/plantImage"
         app:layout_constraintEnd_toStartOf="@+id/guideline12"

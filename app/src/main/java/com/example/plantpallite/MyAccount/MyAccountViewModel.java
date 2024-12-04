@@ -17,4 +17,5 @@ public class MyAccountViewModel extends AndroidViewModel {
     public void deleteAccount(int userId) {
         repository.deleteUser(userId);
     }
+
 }

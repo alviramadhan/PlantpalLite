@@ -93,20 +93,20 @@ public class MyPlantpalRepository {
             throw new RuntimeException("Error checking email existence", e);
         }
     }
-
-    /**
-     * Get a user by their email address for login purposes.
-     * This operation is executed asynchronously using a Future.
-     */
-    public User getUserByEmail(String email) {
-        Callable<User> callable = () -> userDAO.getUserByEmail(email);
-        Future<User> future = MyRoomDatabase.databaseWriteExecutor.submit(callable);
-        try {
-            return future.get();
-        } catch (ExecutionException | InterruptedException e) {
-            throw new RuntimeException("Error retrieving user by email", e);
-        }
-    }
+//
+//    /**
+//     * Get a user by their email address for login purposes.
+//     * This operation is executed asynchronously using a Future.
+//     */
+//    public User getUserByEmail(String email) {
+//        Callable<User> callable = () -> userDAO.getUserByEmail(email);
+//        Future<User> future = MyRoomDatabase.databaseWriteExecutor.submit(callable);
+//        try {
+//            return future.get();
+//        } catch (ExecutionException | InterruptedException e) {
+//            throw new RuntimeException("Error retrieving user by email", e);
+//        }
+//    }
 
     /**
      * Update a user's information in the database.
