@@ -157,10 +157,10 @@
             android:layout_height="82dp"
             android:backgroundTint="@color/buttonPrimary"
             android:src="@drawable/baseline_water_drop_24"
-            android:tint="@color/buttonSecondary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/buttonSecondary" />
 
         <TextView
             android:id="@+id/wateringDateText2"
@@ -205,10 +205,10 @@
             android:layout_height="82dp"
             android:backgroundTint="@color/buttonPrimary"
             android:src="@drawable/baseline_water_drop_24"
-            android:tint="@color/buttonSecondary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/buttonSecondary" />
 
         <TextView
             android:id="@+id/fertilizingDateText4"
