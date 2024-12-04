@@ -45,8 +45,8 @@ public class PlantViewAdapter extends RecyclerView.Adapter<PlantViewHolder> {
         // Bind plant data to views
         holder.plantNameText.setText(plant.getName());
         holder.plantTypeText.setText(plant.getType());
-        holder.nextWateringDateText.setText("Next Watering: " + plant.getWateringFrequency());
-        holder.nextFertilizingDateText.setText("Next Fertilizing: " + plant.getFertilizingFrequency());
+        holder.nextWateringDateText.setText("Type of Watering Dates: " + plant.getWateringFrequency());
+        holder.nextFertilizingDateText.setText("Type of Fertilizing Dates: " + plant.getFertilizingFrequency());
         holder.plantImage.setImageResource(R.drawable.plant_placeholder); // Placeholder image
 
         // Handle clicks
