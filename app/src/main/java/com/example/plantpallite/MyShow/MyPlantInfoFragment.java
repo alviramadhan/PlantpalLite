@@ -102,7 +102,8 @@ public class MyPlantInfoFragment extends Fragment {
 
 
         // Back button functionality
-        binding.plantInfoBackButton.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_myPlantInfoFragment_to_myShowAllPlantFragment));
+      //  binding.plantInfoBackButton.setOnClickListener(v ->
+     //    Navigation.findNavController(view).navigate(R.id.action_myShowAllPlantFragment_to_myAddPlantFragment, bundle);
     }
 
     @Override

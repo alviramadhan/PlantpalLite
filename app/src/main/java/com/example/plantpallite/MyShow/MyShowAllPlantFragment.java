@@ -43,10 +43,21 @@ public class MyShowAllPlantFragment extends Fragment {
 
         if (userId == -1) {
             Log.e("MyShowAllPlantFragment", "Invalid userId passed!");
-            return;
         }
         Log.d("MyShowAllPlantFragment", "Retrieved userId: " + userId);
 
+
+//        Bundle args = getArguments();
+//        assert args != null; //prevent accessing nul args
+//        int userId = args.getInt("userI", -1); // Default to -1 if plantId is not found
+//
+//        if (userId != -1) {
+//            Log.d("MyPlantScheduleFragment", "Retrieved plantId in schedule: " + plantId);
+//            // Use plantId as needed
+//        } else {
+//            Log.e("MyPlantScheduleFragment", "Invalid plantId passed!");
+//        }
+//
         // Initialize ViewModel
         mViewModel = new ViewModelProvider(this).get(MyShowAllPlantViewModel.class);
 
@@ -67,7 +78,8 @@ public class MyShowAllPlantFragment extends Fragment {
                     Navigation.findNavController(view).navigate(R.id.action_myShowAllPlantFragment_to_myPlantInfoFragment, bundle);
                 },
                 plant -> {
-                    // Edit plant logic
+                    // Delete plant logic
+                    mViewModel.deletePlant(plant);
                 }
         );
         recyclerView.setAdapter(plantViewAdapter);
@@ -82,10 +94,17 @@ public class MyShowAllPlantFragment extends Fragment {
 
         // Add button functionality
         binding.myShowAllPlantAddButton.setOnClickListener(v -> {
-            NavController navController = Navigation.findNavController(v);
             Bundle bundle = new Bundle();
             bundle.putInt("userId", userId); // Pass userId to the AddPlantFragment
-            navController.navigate(R.id.action_myShowAllPlantFragment_to_myAddPlantFragment, bundle);
+            Navigation.findNavController(view).navigate(R.id.action_myShowAllPlantFragment_to_myAddPlantFragment, bundle);
+        });
+
+        //account button
+        binding.showAllAccountButton.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putInt("userId", userId);
+            NavController navController = Navigation.findNavController(v);
+            navController.navigate(R.id.action_myShowAllPlantFragment_to_myAccountFragment2, bundle);
         });
     }
 }

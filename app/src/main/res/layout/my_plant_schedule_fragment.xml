@@ -10,7 +10,7 @@
 
 
     <Button
-        android:id="@+id/plantNameButton"
+        android:id="@+id/plantNameButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -34,7 +34,7 @@
         android:src="@drawable/plant_placeholder"
         app:layout_constraintEnd_toStartOf="@+id/guideline12"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toBottomOf="@id/plantNameButton" />
+        app:layout_constraintTop_toBottomOf="@id/plantNameButton2" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/tabLayoutContainer"
@@ -107,9 +107,11 @@
             android:id="@+id/wateringCheckbox1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/wateringButton"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/wateringButton"
             app:layout_constraintTop_toBottomOf="@+id/wateringButton" />
 
         <TextView
@@ -156,8 +158,9 @@
             android:backgroundTint="@color/buttonPrimary"
             android:src="@drawable/baseline_water_drop_24"
             android:tint="@color/buttonSecondary"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="1dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/wateringDateText2"
@@ -203,8 +206,9 @@
             android:backgroundTint="@color/buttonPrimary"
             android:src="@drawable/baseline_water_drop_24"
             android:tint="@color/buttonSecondary"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="1dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/fertilizingDateText4"
@@ -246,9 +250,11 @@
             android:id="@+id/fertilizingCheckbox1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="32dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/fertilizingButton"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/fertilizingButton"
             app:layout_constraintTop_toBottomOf="@+id/fertilizingButton" />
 
         <CheckBox

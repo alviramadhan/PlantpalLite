@@ -73,7 +73,7 @@ public class MyPlantScheduleFragment extends Fragment {
 
         mViewModel.getPlantById(plantId).observe(getViewLifecycleOwner(), plant -> {
             if (plant != null) {
-                binding.plantNameButton.setText(plant.getName());
+                binding.plantNameButton2.setText(plant.getName());
 
 //                // Calculate watering and fertilizing schedules
 //                String[] wateringDates = mViewModel.calculateWateringDates(plant);
@@ -134,7 +134,7 @@ public class MyPlantScheduleFragment extends Fragment {
         });
 
         // Back button functionality
-        binding.plantScheduleBackButton.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_myPlantScheduleFragment_to_myShowAllPlantFragment));
+       // binding.plantScheduleBackButton.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_myPlantScheduleFragment_to_myShowAllPlantFragment));
 
 
     }

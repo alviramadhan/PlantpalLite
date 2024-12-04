@@ -19,14 +19,15 @@ public class PlantViewAdapter extends RecyclerView.Adapter<PlantViewHolder> {
 
     private List<Plant> plants;
     private final OnPlantClickListener clickListener;
-    private final OnPlantEditListener editListener;
+    private final OnPlantDeleteListener deleteListener;
+
 
 
     // Constructor
-    public PlantViewAdapter(List<Plant> plants, OnPlantClickListener clickListener, OnPlantEditListener editListener) {
+    public PlantViewAdapter(List<Plant> plants, OnPlantClickListener clickListener, OnPlantDeleteListener deleteListener) {
         this.plants = plants;
         this.clickListener = clickListener;
-        this.editListener = editListener;
+        this.deleteListener = deleteListener;
     }
 
     @NonNull
@@ -56,8 +57,8 @@ public class PlantViewAdapter extends RecyclerView.Adapter<PlantViewHolder> {
         });
 
         holder.editPlantButton.setOnClickListener(v -> {
-            if (editListener != null) {
-                editListener.onPlantEdit(plant);
+            if (deleteListener != null) {
+                deleteListener.onPlantEdit(plant);
             }
         });
     }
@@ -77,7 +78,7 @@ public class PlantViewAdapter extends RecyclerView.Adapter<PlantViewHolder> {
         void onPlantClick(Plant plant);
     }
 
-    public interface OnPlantEditListener {
+    public interface OnPlantDeleteListener {
         void onPlantEdit(Plant plant);
     }
 }

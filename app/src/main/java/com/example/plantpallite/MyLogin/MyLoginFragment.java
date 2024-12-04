@@ -71,6 +71,12 @@ public class MyLoginFragment extends Fragment {
 //                }
 //            });
 
+        //navigate to sign up page.
+        binding.loginSignUpButton.setOnClickListener(v ->{
+            Navigation.findNavController(view).navigate(R.id.action_myLoginFragment_to_mySignUpFragment);
+
+        } );
+
             binding.loginLoginButton.setOnClickListener(v -> {
                 String email = binding.loginEmailTIL.getEditText().getText().toString();
                 String password = binding.loginPasswordTIL.getEditText().getText().toString();
@@ -85,7 +91,7 @@ public class MyLoginFragment extends Fragment {
 // Navigate to the next fragment on successful login
             Bundle bundle = new Bundle();
             int userId = user.getUserId();
-            bundle.putInt("userID", userId); // Replace with actual userID
+            bundle.putInt("userId", userId); // Replace with actual userID
             Navigation.findNavController(view).navigate(R.id.action_myLoginFragment_to_myShowAllPlantFragment, bundle);
             Log.d("MYLoginFragment", "Passing userId: " + user.getUserId());
 

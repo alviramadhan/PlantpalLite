@@ -182,7 +182,6 @@ import java.util.Date;
     @Override
     public String toString() {
         return "Plant{" +
-                "id= '" + id + '\'' +
                 "name='" + name + '\'' +
                 ", type='" + type + '\'' +
                 ", wateringFrequency='" + wateringFrequency + '\'' +

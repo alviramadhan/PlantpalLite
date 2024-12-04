@@ -10,31 +10,39 @@
         android:name="com.example.plantpallite.MyLogin.MyLoginFragment"
         android:label="my_login_fragment"
         tools:layout="@layout/my_login_fragment" >
+        <argument
+            android:name="userId"
+            app:argType="integer"
+            android:defaultValue="0" />
         <action
             android:id="@+id/action_myLoginFragment_to_myShowAllPlantFragment"
             app:destination="@id/myShowAllPlantFragment"
             app:popUpTo="@id/myLoginFragment"
             app:popUpToInclusive="true" />
-        <argument
-            android:name="userId"
-            app:argType="integer"
-            android:defaultValue="-1" />
+        <action
+            android:id="@+id/action_myLoginFragment_to_mySignUpFragment"
+            app:destination="@id/mySignUpFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/myShowAllPlantFragment"
         android:name="com.example.plantpallite.MyShow.MyShowAllPlantFragment"
         android:label="my_show_all_plant_fragment"
         tools:layout="@layout/my_show_all_plant_fragment" >
+        <argument
+            android:name="userId"
+            app:argType="integer"
+            android:defaultValue="0" />
         <action
             android:id="@+id/action_myShowAllPlantFragment_to_myAddPlantFragment"
             app:destination="@id/myAddPlantFragment" />
         <action
             android:id="@+id/action_myShowAllPlantFragment_to_myPlantInfoFragment"
             app:destination="@id/myPlantInfoFragment" />
-        <argument
-            android:name="userId"
-            app:argType="integer"
-            android:defaultValue="-1" />
+        <action
+            android:id="@+id/action_myShowAllPlantFragment_to_myAccountFragment2"
+            app:destination="@id/myAccountFragment2" />
+
     </fragment>
     <fragment
         android:id="@+id/myAddPlantFragment"
@@ -44,7 +52,10 @@
         <argument
             android:name="userId"
             app:argType="integer"
-            android:defaultValue="-1" />
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/action_myAddPlantFragment_to_myShowAllPlantFragment"
+            app:destination="@id/myShowAllPlantFragment" />
     </fragment>
     <fragment
         android:id="@+id/myPlantInfoFragment"
@@ -80,4 +91,17 @@
             app:destination="@id/myShowAllPlantFragment" />
 
     </fragment>
+    <fragment
+        android:id="@+id/myAccountFragment2"
+        android:name="com.example.plantpallite.MyAccount.MyAccountFragment"
+        android:label="MyAccountFragment" >
+        <action
+            android:id="@+id/action_myAccountFragment2_to_myLoginFragment"
+            app:destination="@id/myLoginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mySignUpFragment"
+        android:name="com.example.plantpallite.MyLogin.MySignUpFragment"
+        android:label="my_sign_up_fragment"
+        tools:layout="@layout/my_sign_up_fragment" />
 </navigation>

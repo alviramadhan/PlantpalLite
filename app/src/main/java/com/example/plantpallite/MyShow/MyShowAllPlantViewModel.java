@@ -72,4 +72,9 @@ public class MyShowAllPlantViewModel extends AndroidViewModel {
     public LiveData<List<Plant>> getPlants() {
         return plants;
     }
+
+    // Delete a plant
+    public void deletePlant(Plant plant) {
+        repository.deletePlant(plant);
+    }
 }
