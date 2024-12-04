@@ -36,7 +36,7 @@ public class MyPlantpalRepository {
         userDAO = db.userDAO();
 
         // Initialize LiveData for all plants
-        allPlants = plantDAO.getPlantsByUserId(1); // Replace 1 with dynamic user ID if needed
+        //allPlants = plantDAO.getPlantsByUserId(1); // Replace 1 with dynamic user ID
     }
 
     // ------------------- USER OPERATIONS -------------------
@@ -46,26 +46,6 @@ public class MyPlantpalRepository {
      * This operation is executed asynchronously to avoid blocking the UI thread.
      */
 
-//    public void login(String email, String password, OnLoginCallback callback) {
-//        Callable<User> callable = () -> userDAO.getUserByEmail(email);
-//        MyRoomDatabase.databaseWriteExecutor.execute(() -> {
-//            try {
-//                User user = callable.call();
-//                if (user != null && user.getPassword().equals(password)) {
-//                    callback.onSuccess(user);
-//                } else {
-//                    callback.onFailure("Invalid email or password");
-//                }
-//            } catch (Exception e) {
-//                callback.onFailure("Error during login");
-//            }
-//        });
-//    }
-//
-//    public interface OnLoginCallback {
-//        void onSuccess(User user);
-//        void onFailure(String errorMessage);
-//    }
 
 
     public User login(String email, String password) {
@@ -93,20 +73,6 @@ public class MyPlantpalRepository {
             throw new RuntimeException("Error checking email existence", e);
         }
     }
-//
-//    /**
-//     * Get a user by their email address for login purposes.
-//     * This operation is executed asynchronously using a Future.
-//     */
-//    public User getUserByEmail(String email) {
-//        Callable<User> callable = () -> userDAO.getUserByEmail(email);
-//        Future<User> future = MyRoomDatabase.databaseWriteExecutor.submit(callable);
-//        try {
-//            return future.get();
-//        } catch (ExecutionException | InterruptedException e) {
-//            throw new RuntimeException("Error retrieving user by email", e);
-//        }
-//    }
 
     /**
      * Update a user's information in the database.

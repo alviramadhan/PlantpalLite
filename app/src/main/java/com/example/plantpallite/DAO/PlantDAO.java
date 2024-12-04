@@ -36,7 +36,7 @@ public interface PlantDAO {
     @Delete
     int deletePlant(Plant plant);
 
-    // Get plants with upcoming tasks (e.g., watering, fertilizing)
+    // Get plants with upcoming tasks
     @Query("SELECT * FROM PLANT WHERE LAST_UPDATE < :upcomingDate")
     LiveData<List<Plant>> getPlantsWithUpcomingTasks(long upcomingDate);
 
