@@ -26,30 +26,7 @@ public class MyShowAllPlantViewModel extends AndroidViewModel {
 //        // Update LiveData to fetch plants for the given userId
 //        plants = repository.getPlantsByUserId(userId);
 //    }
-//
-//    public LiveData<List<Plant>> getPlants(int userId) {
-//        return plants;
-//    }
 
-//    private final MyPlantpalRepository repository;
-//    private MutableLiveData<List<Plant>> plants = new MutableLiveData<>();
-//
-//    public MyShowAllPlantViewModel(@NonNull Application application) {
-//        super(application);
-//        repository = new MyPlantpalRepository(application);
-//    }
-//
-//    // Set userId and fetch plants
-//    public void fetchPlantsByUserId(int userId) {
-//        plants = (MutableLiveData<List<Plant>>) repository.getPlantsByUserId(userId);
-//        repository.getPlantsByUserId(userId).observeForever(plants::setValue);
-//    }
-//
-//
-//    // Expose LiveData to the fragment
-//    public LiveData<List<Plant>> getPlantsLiveData() {
-//        return repository.getPlantsByUserId(int userId);
-//    }
 
     private final MyPlantpalRepository repository;
     private final MutableLiveData<List<Plant>> plants = new MutableLiveData<>();

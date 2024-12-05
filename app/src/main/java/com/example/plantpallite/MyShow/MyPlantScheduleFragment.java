@@ -303,21 +303,6 @@ public class MyPlantScheduleFragment extends Fragment {
             }
         }
 
-//
-//    private void updateWateringUI(String[] dates) {
-//        binding.wateringDateText1.setText(dates[0]);
-//        binding.wateringDateText2.setText(dates[1]);
-//        binding.wateringDateText3.setText(dates[2]);
-//        binding.wateringDateText4.setText(dates[3]);
-//    }
-//
-//    private void updateFertilizingUI(String[] dates) {
-//        binding.fertilizingDateText1.setText(dates[0]);
-//        binding.fertilizingDateText2.setText(dates[1]);
-//        binding.fertilizingDateText3.setText(dates[2]);
-//        binding.fertilizingDateText4.setText(dates[3]);
-//    }
-
 
         @Override
         public void onDestroyView () {

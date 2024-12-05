@@ -47,17 +47,6 @@ public class MyShowAllPlantFragment extends Fragment {
         Log.d("MyShowAllPlantFragment", "Retrieved userId: " + userId);
 
 
-//        Bundle args = getArguments();
-//        assert args != null; //prevent accessing nul args
-//        int userId = args.getInt("userI", -1); // Default to -1 if plantId is not found
-//
-//        if (userId != -1) {
-//            Log.d("MyPlantScheduleFragment", "Retrieved plantId in schedule: " + plantId);
-//            // Use plantId as needed
-//        } else {
-//            Log.e("MyPlantScheduleFragment", "Invalid plantId passed!");
-//        }
-//
         // Initialize ViewModel
         mViewModel = new ViewModelProvider(this).get(MyShowAllPlantViewModel.class);
 
@@ -65,7 +54,7 @@ public class MyShowAllPlantFragment extends Fragment {
         mViewModel.fetchPlantsByUserId(userId);
 
         // Setup RecyclerView
-        RecyclerView recyclerView = binding.plantCardsRecyclerView; // Replace with actual RecyclerView ID
+        RecyclerView recyclerView = binding.plantCardsRecyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
         // Initialize the adapter
