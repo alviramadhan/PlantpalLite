@@ -21,7 +21,7 @@ public class PlantViewHolder extends RecyclerView.ViewHolder {
     public PlantViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        // Match these IDs to your layout
+        // Match these IDs to layout
         plantNameText = itemView.findViewById(R.id.plantNameText);
         plantTypeText = itemView.findViewById(R.id.plantTypeText);
         nextWateringDateText = itemView.findViewById(R.id.textView8);

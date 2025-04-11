@@ -7,7 +7,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.util.Log;
@@ -15,8 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.plantpallite.Database.MyPlantpalRepository;
-import com.example.plantpallite.Plant;
 import com.example.plantpallite.R;
 import com.example.plantpallite.databinding.MyPlantInfoFragmentBinding;
 
@@ -73,8 +70,19 @@ public class MyPlantInfoFragment extends Fragment {
                 Log.d("MyPlantInfoFragment", "Retrieved plantId: " + plantId);
 
             if (plantId != -1) {
-                // Use the plantId to fetch plant details
-                mViewModel.getPlantById(plantId).observe(getViewLifecycleOwner(), this::bindPlantData);
+                //get plant ID from viewmodel
+                mViewModel.getPlantById(plantId).observe(getViewLifecycleOwner(), plant -> {
+                    if (plant != null) {
+                        // Update UI with plant data
+                        binding.plantNameButton.setText(plant.getName());
+                        binding.plantTypeValue.setText(plant.getType());
+                        binding.lastUpdateValue.setText(String.valueOf(plant.getLastUpdate()));
+                        binding.plantAgeValue.setText(String.valueOf(plant.getPlantAgeInDays()));
+                        binding.plantImage.setImageResource(R.drawable.plant_placeholder); // Placeholder image for now
+                        binding.lastWateredValue.setText(String.valueOf(plant.getLastWateringDate()));
+                        binding.lastFertilizedValue.setText(String.valueOf(plant.getLastFertilizingDate()));
+                    }
+                });
             } else {
                 Log.e("MyPlantInfoFragment", "Invalid plantId passed!");
             }
@@ -84,38 +92,18 @@ public class MyPlantInfoFragment extends Fragment {
 
         //Schedule tab
         binding.scheduleTabButton.setOnClickListener(v -> {
-//            NavController navController = Navigation.findNavController(v);
-//            args.putInt("plantId", plantId); // Pass the plantId
-//            navController.navigate(R.id.action_myPlantInfoFragment_to_myPlantScheduleFragment, args);
-
             Bundle bundle = new Bundle();
             bundle.putInt("plantID", plantId);
             Navigation.findNavController(view).navigate(R.id.action_myPlantInfoFragment_to_myPlantScheduleFragment, bundle);
 
             Log.d("MyPlantInfoFragment", "Passing plantId: " + plantId);
 
-
-
         });
 
 
-
-
         // Back button functionality
-        binding.plantInfoBackButton.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_myPlantInfoFragment_to_myShowAllPlantFragment));
-    }
-
-    private void bindPlantData(Plant plant) {
-        if (plant == null) {
-            Log.e("MyPlantInfoFragment", "Plant not found!");
-            return;
-        }
-
-        // Update UI with plant data
-        binding.plantNameButton.setText(plant.getName());
-        binding.plantTypeValue.setText(plant.getType());
-        binding.plantAgeValue.setText(String.valueOf(plant.getPlantAgeInDays()));
-        binding.plantImage.setImageResource(R.drawable.plant_placeholder); // Placeholder image for now
+      //  binding.plantInfoBackButton.setOnClickListener(v ->
+     //    Navigation.findNavController(view).navigate(R.id.action_myShowAllPlantFragment_to_myAddPlantFragment, bundle);
     }
 
     @Override

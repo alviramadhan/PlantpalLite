@@ -119,6 +119,7 @@
                 android:text="Plant Type Value"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="@color/textNormal"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/plantTypeLabel" />
@@ -139,9 +140,20 @@
                 android:background="@color/accent"
                 android:text="Plant Age"
                 android:textColor="@color/textNormal"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/plantAgeLabel" />
+
+            <TextView
+                android:id="@+id/lastUpdateLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Last Update"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/plantAgeValue" />
 
             <TextView
                 android:id="@+id/lastWateredLabel"
@@ -149,8 +161,31 @@
                 android:layout_height="wrap_content"
                 android:text="Last Watered"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/plantAgeValue" />
+                app:layout_constraintTop_toBottomOf="@+id/lastUpdateValue" />
+
+            <TextView
+                android:id="@+id/lastFertilizedLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Last Fertilized"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lastWateredValue" />
+
+            <TextView
+                android:id="@+id/lastUpdateValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/accent"
+                android:text="Last Update Value"
+                android:textColor="@color/textNormal"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lastUpdateLabel" />
 
             <TextView
                 android:id="@+id/lastWateredValue"
@@ -159,9 +194,24 @@
                 android:background="@color/accent"
                 android:text="Last Watered Value"
                 android:textColor="@color/textNormal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/lastWateredLabel" />
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/lastWateredLabel"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/lastWateredLabel"
+                app:layout_constraintTop_toBottomOf="@+id/lastWateredLabel" />
+
+            <TextView
+                android:id="@+id/lastFertilizedValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/accent"
+                android:text="Last Fertilized Value"
+                android:textColor="@color/textNormal"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/lastWateredLabel"
+                app:layout_constraintStart_toStartOf="@+id/lastWateredLabel"
+                app:layout_constraintTop_toBottomOf="@+id/lastFertilizedLabel" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
@@ -178,4 +228,5 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent=".97" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

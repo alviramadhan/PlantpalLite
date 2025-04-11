@@ -29,31 +29,36 @@ public class MyShowAllPlantFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-       // return inflater.inflate(R.layout.my_show_all_plant_fragment, container, false);
         binding = MyShowAllPlantFragmentBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
-
-//    @Override
-//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-//        super.onActivityCreated(savedInstanceState);
-//        mViewModel = new ViewModelProvider(this).get(MyShowAllPlantViewModel.class);
-//        // TODO: Use the ViewModel
-//    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Retrieve userId from arguments
+        Bundle args = getArguments();
+        int userId = (args != null) ? args.getInt("userId", -1) : -1;
+
+        if (userId == -1) {
+            Log.e("MyShowAllPlantFragment", "Invalid userId passed!");
+        }
+        Log.d("MyShowAllPlantFragment", "Retrieved userId: " + userId);
+
+
         // Initialize ViewModel
         mViewModel = new ViewModelProvider(this).get(MyShowAllPlantViewModel.class);
 
+        // Set userId in ViewModel
+        mViewModel.fetchPlantsByUserId(userId);
+
         // Setup RecyclerView
-        RecyclerView recyclerView = binding.plantCardsRecyclerView; // Replace with actual RecyclerView ID
+        RecyclerView recyclerView = binding.plantCardsRecyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+
         // Initialize the adapter
         plantViewAdapter = new PlantViewAdapter(
-                //the constructor use list, clickListener, edit listener
                 null,
                 plant -> {
                     // Navigate to Plant Info screen
@@ -62,15 +67,14 @@ public class MyShowAllPlantFragment extends Fragment {
                     Navigation.findNavController(view).navigate(R.id.action_myShowAllPlantFragment_to_myPlantInfoFragment, bundle);
                 },
                 plant -> {
-                    // Edit plant logic
+                    // Delete plant logic
+                    mViewModel.deletePlant(plant);
                 }
-
         );
         recyclerView.setAdapter(plantViewAdapter);
 
         // Observe LiveData from ViewModel
-        //I just use the admin ID for prototype
-        mViewModel.getPlantsByUserId(1).observe(getViewLifecycleOwner(), plants -> {
+        mViewModel.getPlants().observe(getViewLifecycleOwner(), plants -> {
             if (plants != null) {
                 Log.d("PlantListSize", "Number of plants: " + plants.size());
                 plantViewAdapter.updateData(plants);
@@ -79,12 +83,17 @@ public class MyShowAllPlantFragment extends Fragment {
 
         // Add button functionality
         binding.myShowAllPlantAddButton.setOnClickListener(v -> {
-            NavController navController = Navigation.findNavController(v);
-            navController.navigate(R.id.action_myShowAllPlantFragment_to_myAddPlantFragment);
+            Bundle bundle = new Bundle();
+            bundle.putInt("userId", userId); // Pass userId to the AddPlantFragment
+            Navigation.findNavController(view).navigate(R.id.action_myShowAllPlantFragment_to_myAddPlantFragment, bundle);
         });
 
-
-
-        //to avoid coming back to the login page. just set the pop behaviour as inclusive true
+        //account button
+        binding.showAllAccountButton.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putInt("userId", userId);
+            NavController navController = Navigation.findNavController(v);
+            navController.navigate(R.id.action_myShowAllPlantFragment_to_myAccountFragment2, bundle);
+        });
     }
 }

@@ -10,6 +10,7 @@ import androidx.room.Update;
 
 import com.example.plantpallite.Plant;
 
+import java.util.Date;
 import java.util.List;
 
 @Dao
@@ -35,9 +36,17 @@ public interface PlantDAO {
     @Delete
     int deletePlant(Plant plant);
 
-    // Get plants with upcoming tasks (e.g., watering, fertilizing)
+    // Get plants with upcoming tasks
     @Query("SELECT * FROM PLANT WHERE LAST_UPDATE < :upcomingDate")
     LiveData<List<Plant>> getPlantsWithUpcomingTasks(long upcomingDate);
 
+    @Query("UPDATE PLANT SET LAST_WATERING_DATE = :newDate WHERE ID = :plantId")
+    void updateLastWateringDate(int plantId, Date newDate);
+
+    @Query("UPDATE PLANT SET LAST_FERTILIZING_DATE = :newDate WHERE ID = :plantId")
+    void updateLastFertilizingDate(int plantId, Date newDate);
+
+    @Query("UPDATE PLANT SET LAST_UPDATE     = :newDate WHERE ID = :plantId")
+    void  setLastUpdate(int plantId, Date newDate);
 }
 

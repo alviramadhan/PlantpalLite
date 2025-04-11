@@ -19,14 +19,15 @@ public class PlantViewAdapter extends RecyclerView.Adapter<PlantViewHolder> {
 
     private List<Plant> plants;
     private final OnPlantClickListener clickListener;
-    private final OnPlantEditListener editListener;
+    private final OnPlantDeleteListener deleteListener;
+
 
 
     // Constructor
-    public PlantViewAdapter(List<Plant> plants, OnPlantClickListener clickListener, OnPlantEditListener editListener) {
+    public PlantViewAdapter(List<Plant> plants, OnPlantClickListener clickListener, OnPlantDeleteListener deleteListener) {
         this.plants = plants;
         this.clickListener = clickListener;
-        this.editListener = editListener;
+        this.deleteListener = deleteListener;
     }
 
     @NonNull
@@ -44,8 +45,8 @@ public class PlantViewAdapter extends RecyclerView.Adapter<PlantViewHolder> {
         // Bind plant data to views
         holder.plantNameText.setText(plant.getName());
         holder.plantTypeText.setText(plant.getType());
-        holder.nextWateringDateText.setText("Next Watering: " + plant.getWateringFrequency());
-        holder.nextFertilizingDateText.setText("Next Fertilizing: " + plant.getFertilizingFrequency());
+        holder.nextWateringDateText.setText("Type of Watering Dates: " + plant.getWateringFrequency());
+        holder.nextFertilizingDateText.setText("Type of Fertilizing Dates: " + plant.getFertilizingFrequency());
         holder.plantImage.setImageResource(R.drawable.plant_placeholder); // Placeholder image
 
         // Handle clicks
@@ -56,8 +57,8 @@ public class PlantViewAdapter extends RecyclerView.Adapter<PlantViewHolder> {
         });
 
         holder.editPlantButton.setOnClickListener(v -> {
-            if (editListener != null) {
-                editListener.onPlantEdit(plant);
+            if (deleteListener != null) {
+                deleteListener.onPlantEdit(plant);
             }
         });
     }
@@ -77,7 +78,7 @@ public class PlantViewAdapter extends RecyclerView.Adapter<PlantViewHolder> {
         void onPlantClick(Plant plant);
     }
 
-    public interface OnPlantEditListener {
+    public interface OnPlantDeleteListener {
         void onPlantEdit(Plant plant);
     }
 }

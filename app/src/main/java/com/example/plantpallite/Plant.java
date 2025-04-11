@@ -37,7 +37,7 @@ import java.util.Date;
         private String fertilizingFrequency;  // Fertilizing frequency
 
         @ColumnInfo(name = "PLANTING_DATE")
-        private long plantingDate;    // Timestamp of planting date (in milliseconds)
+        private Date plantingDate;    // Timestamp of planting date (in milliseconds)
 
         @ColumnInfo(name = "USER_ID")
         private Integer userID;  // ID of the user who owns the plant
@@ -45,8 +45,29 @@ import java.util.Date;
         @ColumnInfo(name = "LAST_UPDATE")
         private Date lastUpdate;  // Timestamp of the last update
 
+
+    @ColumnInfo(name = "LAST_WATERING_DATE")
+    private Date lastWateringDate;
+    @ColumnInfo(name = "LAST_FERTILIZING_DATE")
+    private Date lastFertilizingDate;
+
         @ColumnInfo(name = "IMAGE_URL")
         private String image;    // URL or file path of the plant image
+
+    public Plant(Integer id, String name, String type, String wateringFrequency, String fertilizingFrequency, long plantingDateMillis, Integer userID, Date lastUpdate, Date lastWateringDate, Date lastFertilizingDate, String image) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.wateringFrequency = wateringFrequency;
+        this.fertilizingFrequency = fertilizingFrequency;
+        this.plantingDate = new Date(plantingDateMillis); // Convert long to Date
+        this.userID = userID;
+        this.lastUpdate = lastUpdate;
+        this.lastWateringDate = lastWateringDate;
+        this.lastFertilizingDate = lastFertilizingDate;
+        this.image = image;
+    }
+
 
     public Integer getId() {
         return id;
@@ -54,20 +75,6 @@ import java.util.Date;
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    // Constructor
-    public Plant(Integer id, String name, String type, String wateringFrequency, String fertilizingFrequency,
-                 long plantingDate, Integer userID, Date lastUpdate, String image) {
-        this.id = id;
-        this.name = name;
-        this.type = type;
-        this.wateringFrequency = wateringFrequency;
-        this.fertilizingFrequency = fertilizingFrequency;
-        this.plantingDate = plantingDate;
-        this.userID = userID;
-        this.lastUpdate = lastUpdate;
-        this.image = image;
     }
 
     // Default constructor
@@ -107,11 +114,11 @@ import java.util.Date;
         this.fertilizingFrequency = fertilizingFrequency;
     }
 
-    public long getPlantingDate() {
+    public Date getPlantingDate() {
         return plantingDate;
     }
 
-    public void setPlantingDate(long plantingDate) {
+    public void setPlantingDate(Date plantingDate) {
         this.plantingDate = plantingDate;
     }
 
@@ -135,6 +142,22 @@ import java.util.Date;
         return image;
     }
 
+    public Date getLastWateringDate() {
+        return lastWateringDate;
+    }
+
+    public void setLastWateringDate(Date lastWateringDate) {
+        this.lastWateringDate = lastWateringDate;
+    }
+
+    public Date getLastFertilizingDate() {
+        return lastFertilizingDate;
+    }
+
+    public void setLastFertilizingDate(Date lastFertilizingDate) {
+        this.lastFertilizingDate = lastFertilizingDate;
+    }
+
     public void setImage(String image) {
         this.image = image;
     }
@@ -143,7 +166,8 @@ import java.util.Date;
     // Method to calculate plant age in days
     public long getPlantAgeInDays() {
         long currentTime = System.currentTimeMillis();
-        return (currentTime - plantingDate) / (1000 * 60 * 60 * 24); // Convert milliseconds to days
+        long plantingDateMillis = this.plantingDate.getTime();
+        return (currentTime - plantingDateMillis) / (1000 * 60 * 60 * 24); // Convert milliseconds to days
     }
 
     // Method to calculate days since the last update
@@ -159,7 +183,6 @@ import java.util.Date;
     @Override
     public String toString() {
         return "Plant{" +
-                "id= '" + id + '\'' +
                 "name='" + name + '\'' +
                 ", type='" + type + '\'' +
                 ", wateringFrequency='" + wateringFrequency + '\'' +

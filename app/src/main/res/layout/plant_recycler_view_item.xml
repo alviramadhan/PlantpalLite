@@ -74,7 +74,7 @@
                 android:layout_marginEnd="32dp"
                 android:layout_marginBottom="8dp"
                 android:backgroundTint="@color/buttonPrimary"
-                android:text="Edit Plant"
+                android:text="Delete Plant"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="Next Watering Date:"
+                android:text="Type of Watering Date:"
                 app:layout_constraintStart_toStartOf="@+id/plantImage"
                 app:layout_constraintTop_toBottomOf="@+id/plantImage" />
 
@@ -96,7 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Next Fertilizing Date:"
+                android:text="ype of Fertilizing Date:"
                 app:layout_constraintStart_toStartOf="@+id/textView8"
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
 

@@ -9,6 +9,7 @@ import com.example.plantpallite.DAO.UserDAO;
 import com.example.plantpallite.Plant;
 import com.example.plantpallite.User;
 
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -35,7 +36,7 @@ public class MyPlantpalRepository {
         userDAO = db.userDAO();
 
         // Initialize LiveData for all plants
-        allPlants = plantDAO.getPlantsByUserId(1); // Replace 1 with dynamic user ID if needed
+        //allPlants = plantDAO.getPlantsByUserId(1); // Replace 1 with dynamic user ID
     }
 
     // ------------------- USER OPERATIONS -------------------
@@ -45,26 +46,6 @@ public class MyPlantpalRepository {
      * This operation is executed asynchronously to avoid blocking the UI thread.
      */
 
-//    public void login(String email, String password, OnLoginCallback callback) {
-//        Callable<User> callable = () -> userDAO.getUserByEmail(email);
-//        MyRoomDatabase.databaseWriteExecutor.execute(() -> {
-//            try {
-//                User user = callable.call();
-//                if (user != null && user.getPassword().equals(password)) {
-//                    callback.onSuccess(user);
-//                } else {
-//                    callback.onFailure("Invalid email or password");
-//                }
-//            } catch (Exception e) {
-//                callback.onFailure("Error during login");
-//            }
-//        });
-//    }
-//
-//    public interface OnLoginCallback {
-//        void onSuccess(User user);
-//        void onFailure(String errorMessage);
-//    }
 
 
     public User login(String email, String password) {
@@ -94,20 +75,6 @@ public class MyPlantpalRepository {
     }
 
     /**
-     * Get a user by their email address for login purposes.
-     * This operation is executed asynchronously using a Future.
-     */
-    public User getUserByEmail(String email) {
-        Callable<User> callable = () -> userDAO.getUserByEmail(email);
-        Future<User> future = MyRoomDatabase.databaseWriteExecutor.submit(callable);
-        try {
-            return future.get();
-        } catch (ExecutionException | InterruptedException e) {
-            throw new RuntimeException("Error retrieving user by email", e);
-        }
-    }
-
-    /**
      * Update a user's information in the database.
      */
     public void updateUser(User user) {
@@ -117,9 +84,14 @@ public class MyPlantpalRepository {
     /**
      * Delete a user from the database.
      */
-    public void deleteUser(User user) {
-        MyRoomDatabase.databaseWriteExecutor.execute(() -> userDAO.deleteUser(user));
-    }
+    public void deleteUser(int userId) {
+        MyRoomDatabase.databaseWriteExecutor.execute(() -> {
+            User user = userDAO.getUserById(userId); // Fetch user by ID
+            if (user != null) {
+                userDAO.deleteUser(user); // Delete the fetched user
+            }
+        });
+        }
 
     // ------------------- PLANT OPERATIONS -------------------
 
@@ -169,6 +141,18 @@ public class MyPlantpalRepository {
         }
     }
 
+    public void updateLastWateringDate(int plantId, Date newDate) {
+        plantDAO.updateLastWateringDate(plantId, newDate);
+    }
+
+    public void updateLastFertilizingDate(int plantId, Date newDate) {
+        plantDAO.updateLastFertilizingDate(plantId, newDate);
+    }
+
+    public  void  setLastUpdate(int plantId, Date newDate)
+    {
+        plantDAO.setLastUpdate(plantId, newDate);
+    }
 
     /**
      * Get a list of plants with upcoming tasks
